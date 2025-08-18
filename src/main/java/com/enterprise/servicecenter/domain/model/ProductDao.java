@@ -18,6 +18,7 @@ public class ProductDao {
 
     private String name;
     private String description;
+    private Double price;
 
     protected ProductDao() {
     }
@@ -26,6 +27,7 @@ public class ProductDao {
         this.id = product.getId();
         this.name = product.getName();
         this.description = product.getDescription();
+        this.price = product.getPrice();
     }
 
     public Product toDomain() {
@@ -33,6 +35,7 @@ public class ProductDao {
         product.setId(this.id);
         product.setName(this.name);
         product.setDescription(this.description);
+        product.setPrice(this.price);
         return product;
     }
 
