@@ -1,4 +1,4 @@
-package com.enterprise.servicecenter.com.anthares.application.port.out;
+package com.enterprise.servicecenter.application.port.out;
 
 import com.enterprise.servicecenter.application.model.Product;
 

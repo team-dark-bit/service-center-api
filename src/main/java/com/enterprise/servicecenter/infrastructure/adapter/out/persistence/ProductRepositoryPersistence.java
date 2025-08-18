@@ -1,7 +1,7 @@
 package com.enterprise.servicecenter.infrastructure.adapter.out.persistence;
 
 import com.enterprise.servicecenter.application.model.Product;
-import com.enterprise.servicecenter.com.anthares.application.port.out.ProductRepository;
+import com.enterprise.servicecenter.application.port.out.ProductRepository;
 import com.enterprise.servicecenter.domain.model.ProductDao;
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaProductRepository;
 import org.springframework.stereotype.Repository;
