@@ -5,8 +5,9 @@ import org.springframework.http.HttpStatus;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RequiredArgsConstructor
-public enum Errors implements ApplicationError {
-    CUSTOMER_NOT_FOUND(NOT_FOUND, "El id: %s del cliente no existe");
+public enum RuntimeErrors implements ApplicationError {
+
+    PRODUCT_NOT_FOUND(NOT_FOUND, "The product with id: %s does not exist");
 
     private final HttpStatus status;
     private final String message;

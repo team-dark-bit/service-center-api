@@ -8,7 +8,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Product {
+
     private String id;
     private String name;
     private String description;
+    private Double price;
+
+    public void setPrice(String price) {
+        this.price = Double.parseDouble(price);
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 }
