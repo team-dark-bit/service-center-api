@@ -4,4 +4,5 @@ import com.enterprise.servicecenter.application.model.Brand;
 
 public interface BrandRepository {
   void save(Brand brand);
+  Brand findById(String id);
 }

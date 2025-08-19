@@ -37,7 +37,4 @@ public class BrandDao {
     brand.setDescription(this.description);
     return brand;
   }
-  /*
-  id, name, alias, description
-   */
 }
