@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 import static com.enterprise.servicecenter.infrastructure.config.exception.RuntimeErrors.BRAND_NOT_FOUND;
 
 @Repository
-public class BrandRepositoryPersistence implements BrandRepository {
+public class BrandPersistence implements BrandRepository {
 
   private final JpaBrandRepository jpaBrandRepository;
 
-  public BrandRepositoryPersistence(JpaBrandRepository jpaBrandRepository) {
+  public BrandPersistence(JpaBrandRepository jpaBrandRepository) {
     this.jpaBrandRepository = jpaBrandRepository;
   }
 

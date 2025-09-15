@@ -12,7 +12,7 @@ import static com.enterprise.servicecenter.infrastructure.config.exception.Runti
 
 @Repository
 @AllArgsConstructor
-public class SubcategoryRepositoryPersistence implements SubcategoryRepository {
+public class SubcategoryPersistence implements SubcategoryRepository {
 
   private final JpaSubcategoryRepository jpaSubcategoryRepository;
 

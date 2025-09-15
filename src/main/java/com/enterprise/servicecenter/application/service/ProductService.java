@@ -3,8 +3,11 @@ package com.enterprise.servicecenter.application.service;
 import com.enterprise.servicecenter.application.dto.request.CreateProductRequest;
 import com.enterprise.servicecenter.application.dto.response.ProductResponse;
 import com.enterprise.servicecenter.application.model.Product;
+import com.enterprise.servicecenter.application.model.ProductPackage;
 import com.enterprise.servicecenter.application.port.in.ProductUseCase;
+import com.enterprise.servicecenter.application.port.out.ProductPackageRepository;
 import com.enterprise.servicecenter.application.port.out.ProductRepository;
+import com.enterprise.servicecenter.common.util.DateUtil;
 import com.enterprise.servicecenter.common.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,10 +17,13 @@ import org.springframework.stereotype.Service;
 public class ProductService implements ProductUseCase {
 
   private final ProductRepository productRepository;
+  private final ProductPackageRepository productPackageRepository;
 
   @Override
   public void createProduct(CreateProductRequest createProductRequest) {
-    productRepository.save(buildProduct(createProductRequest));
+    String productId = IdGenerator.generateId();
+    productRepository.save(buildProduct(createProductRequest, productId));
+    productPackageRepository.save(buildProductPackage(createProductRequest, productId));
   }
 
   @Override
@@ -25,13 +31,35 @@ public class ProductService implements ProductUseCase {
     return mapProductResponse(productRepository.findById(productId));
   }
 
-  private Product buildProduct(CreateProductRequest createProductRequest) {
-    Product product = new Product();
-    product.setId(IdGenerator.generateId());
-    product.setName(createProductRequest.getName());
-    product.setDescription(createProductRequest.getDescription());
-    product.setPrice(createProductRequest.getPrice());
-    return product;
+  private Product buildProduct(CreateProductRequest createProductRequest, String productId) {
+    return Product.builder()
+            .id(productId)
+            .brandId(createProductRequest.getBrandId())
+            .subcategoryId(createProductRequest.getSubcategoryId())
+            .serviceCenterId(createProductRequest.getServiceCenterId())
+            .name(createProductRequest.getName())
+            .displayName(createProductRequest.getDisplayName())
+            .description(createProductRequest.getDescription())
+            .active(true)
+            .activeFrom(DateUtil.toLocalDateTime(createProductRequest.getActiveFrom()))
+            .barcode(createProductRequest.getBarcode())
+            .sku(createProductRequest.getSku())
+            .build();
+
+  }
+
+  private ProductPackage buildProductPackage(CreateProductRequest createProductRequest, String productId) {
+    ProductPackage productPackage = new ProductPackage();
+    productPackage.setId(IdGenerator.generateId());
+    productPackage.setProductId(productId);
+    productPackage.setPackageId(createProductRequest.getPackageId());
+    productPackage.setUnitId(createProductRequest.getUnitId());
+    productPackage.setQuantity(Double.parseDouble(createProductRequest.getQuantity()));
+    productPackage.setCodedName(createProductRequest.getCodedName());
+    productPackage.setImageUrl(createProductRequest.getImageUrl());
+    productPackage.setStatus(createProductRequest.getStatus());
+
+    return productPackage;
   }
 
   private ProductResponse mapProductResponse(Product product) {
@@ -39,7 +67,7 @@ public class ProductService implements ProductUseCase {
             .id(product.getId())
             .name(product.getName())
             .description(product.getDescription())
-            .price(product.getPrice().toString())
+            //.price(product.getPrice().toString())
             .build();
   }
 

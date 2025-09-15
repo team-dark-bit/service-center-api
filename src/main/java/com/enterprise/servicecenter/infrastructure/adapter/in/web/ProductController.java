@@ -43,4 +43,11 @@ public class ProductController {
     return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Product found", productResponse));
   }
 
+//  @GetMapping
+//  public ResponseEntity<ApiResponse<Iterable<ProductResponse>>> findAll() {
+////    Iterable<ProductResponse> products = productUseCase.findAll();
+////    return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Products retrieved", products));
+//  }
+
+
 }
