@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 import static com.enterprise.servicecenter.infrastructure.config.exception.RuntimeErrors.PRODUCT_NOT_FOUND;
 
 @Repository
-public class ProductRepositoryPersistence implements ProductRepository {
+public class ProductPersistence implements ProductRepository {
 
     private final JpaProductRepository jpaProductRepository;
 
-    public ProductRepositoryPersistence(JpaProductRepository jpaProductRepository) {
+    public ProductPersistence(JpaProductRepository jpaProductRepository) {
         this.jpaProductRepository = jpaProductRepository;
     }
 

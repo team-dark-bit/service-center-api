@@ -3,7 +3,7 @@ package com.enterprise.servicecenter.application.service;
 import com.enterprise.servicecenter.application.dto.request.CreateBrandRequest;
 import com.enterprise.servicecenter.application.dto.response.BrandResponse;
 import com.enterprise.servicecenter.application.model.Brand;
-import com.enterprise.servicecenter.application.port.in.BrandCaseUse;
+import com.enterprise.servicecenter.application.port.in.BrandUseCase;
 import com.enterprise.servicecenter.application.port.out.BrandRepository;
 import com.enterprise.servicecenter.common.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class BrandService implements BrandCaseUse {
+public class BrandService implements BrandUseCase {
 
   private final BrandRepository brandRepository;
 
