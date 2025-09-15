@@ -1,7 +1,5 @@
 package com.enterprise.servicecenter.application.dto.request;
 
-import com.enterprise.servicecenter.common.util.validation.annotation.IsDecimal;
-import com.enterprise.servicecenter.common.util.validation.annotation.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,11 +7,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateProductRequest {
 
+  private String brandId;
+  private String subcategoryId;
+  private String serviceCenterId;
   private String name;
+  private String displayName;
   private String description;
+  private String activeFrom;
+  private String barcode;
+  private String sku;
 
-  @NotBlank(name = "price")
-  @IsDecimal(numbers = 4, decimals = 2)
-  private String price;
+  private String packageId;
+  private String unitId;
+  private String quantity;
+  private String codedName;
+  private String imageUrl;
+  private Boolean status;
 
 }
