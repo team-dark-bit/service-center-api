@@ -1,4 +1,4 @@
-FROM openjdk:21-jdk-alpine
+FROM openjdk:21-jdk
 WORKDIR /app
 COPY target/service-center-api.jar app.jar
 EXPOSE 8080
