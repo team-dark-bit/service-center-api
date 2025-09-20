@@ -1,0 +1,12 @@
+name: Ping Render
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render backend
+        run: curl -s https://service-center-api-tx43.onrender.com/hello
