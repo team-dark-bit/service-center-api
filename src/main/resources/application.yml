@@ -2,9 +2,9 @@ spring:
   application:
     name: service-center
   datasource:
-    url: jdbc:postgresql://servicecenterbd-service-center.c.aivencloud.com:17990/servicecenterbd?sslmode=require
-    username: USER
-    password: PWD
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 3
