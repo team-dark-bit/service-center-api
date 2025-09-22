@@ -13,5 +13,6 @@ public class Brand {
   private String name;
   private String alias;
   private String description;
+  private Boolean active;
 
 }

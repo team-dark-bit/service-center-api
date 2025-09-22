@@ -13,4 +13,5 @@ public class CreateBrandRequest {
 
   private String alias;
   private String description;
+  private Boolean active;
 }

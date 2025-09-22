@@ -19,6 +19,7 @@ public class BrandDao {
   private String name;
   private String alias;
   private String description;
+  private Boolean active;
 
   protected BrandDao () {}
 
@@ -27,6 +28,7 @@ public class BrandDao {
     this.name = brand.getName();
     this.alias = brand.getAlias();
     this.description = brand.getDescription();
+    this.active = brand.getActive();
   }
 
   public Brand toDomain() {
@@ -35,6 +37,7 @@ public class BrandDao {
     brand.setName(this.name);
     brand.setAlias(this.alias);
     brand.setDescription(this.description);
+    brand.setActive(this.active);
     return brand;
   }
 }
