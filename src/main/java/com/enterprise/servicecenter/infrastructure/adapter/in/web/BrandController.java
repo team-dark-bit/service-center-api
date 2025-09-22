@@ -5,6 +5,7 @@ import com.enterprise.servicecenter.application.dto.response.BrandResponse;
 import com.enterprise.servicecenter.application.port.in.BrandUseCase;
 import com.enterprise.servicecenter.common.response.ApiResponse;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,4 +44,11 @@ public class BrandController {
     BrandResponse brandResponse = brandUseCase.findById(id);
     return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Brand found", brandResponse));
   }
+
+  @GetMapping
+  public ResponseEntity<ApiResponse<List<BrandResponse>>> findAll() {
+    List<BrandResponse> brands = brandUseCase.findAll();
+    return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Brands found", brands));
+  }
+
 }

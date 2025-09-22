@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @AllArgsConstructor
 public class SubcategoryController {
+
   private final SubcategoryCaseUse subcategoryCaseUse;
+
   @PostMapping
   public ResponseEntity<ApiResponse<Void>> createSubcategory(
           @RequestBody
@@ -32,9 +34,12 @@ public class SubcategoryController {
     subcategoryCaseUse.creteSubcategory(createSubcategoryRequest);
     return ResponseEntity.ok(ApiResponse.success(HttpStatus.CREATED.value(),"Subcategory created successfully", null));
   }
+
   @GetMapping("/{id}")
   public ResponseEntity<ApiResponse<SubcategoryResponse>> findById(@PathVariable String id){
     SubcategoryResponse subcategoryResponse = subcategoryCaseUse.findById(id);
     return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Subcategory found",subcategoryResponse));
   }
+
+
 }

@@ -6,6 +6,7 @@ import com.enterprise.servicecenter.application.model.Brand;
 import com.enterprise.servicecenter.application.port.in.BrandUseCase;
 import com.enterprise.servicecenter.application.port.out.BrandRepository;
 import com.enterprise.servicecenter.common.util.IdGenerator;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,12 +26,21 @@ public class BrandService implements BrandUseCase {
     return mapBrandResponse(brandRepository.findById(brandId));
   }
 
+  @Override
+  public List<BrandResponse> findAll() {
+    return brandRepository.findAllByActiveTrue()
+            .stream()
+            .map(this::mapBrandResponse)
+            .toList();
+  }
+
   private Brand buildBrand(CreateBrandRequest createBrandRequest) {
     Brand brand = new Brand();
     brand.setId(IdGenerator.generateId());
     brand.setName(createBrandRequest.getName());
     brand.setAlias(createBrandRequest.getAlias());
     brand.setDescription(createBrandRequest.getDescription());
+    brand.setActive(createBrandRequest.getActive());
     return brand;
   }
 
