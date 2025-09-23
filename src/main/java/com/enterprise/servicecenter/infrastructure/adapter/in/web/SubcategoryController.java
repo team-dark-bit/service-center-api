@@ -5,7 +5,7 @@ import com.enterprise.servicecenter.application.dto.response.SubcategoryResponse
 import com.enterprise.servicecenter.application.port.in.SubcategoryCaseUse;
 import com.enterprise.servicecenter.common.response.ApiResponse;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/subcategory")
 @Slf4j
 @Validated
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SubcategoryController {
 
   private final SubcategoryCaseUse subcategoryCaseUse;
@@ -30,8 +30,8 @@ public class SubcategoryController {
   public ResponseEntity<ApiResponse<Void>> createSubcategory(
           @RequestBody
           @Valid
-          CreateSubcategoryRequest createSubcategoryRequest){
-    subcategoryCaseUse.creteSubcategory(createSubcategoryRequest);
+          CreateSubcategoryRequest createSubcategoryRequest) {
+    subcategoryCaseUse.createSubcategory(createSubcategoryRequest);
     return ResponseEntity.ok(ApiResponse.success(HttpStatus.CREATED.value(),"Subcategory created successfully", null));
   }
 
@@ -40,6 +40,5 @@ public class SubcategoryController {
     SubcategoryResponse subcategoryResponse = subcategoryCaseUse.findById(id);
     return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Subcategory found",subcategoryResponse));
   }
-
 
 }

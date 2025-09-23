@@ -10,8 +10,8 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@Service
-@RequiredArgsConstructor
+  @Service
+  @RequiredArgsConstructor
 public class BrandService implements BrandUseCase {
 
   private final BrandRepository brandRepository;

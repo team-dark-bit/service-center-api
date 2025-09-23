@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class SubcategoryService implements SubcategoryCaseUse {
   private final SubcategoryRepository subcategoryRepository;
   @Override
-  public void creteSubcategory(CreateSubcategoryRequest createSubcategoryRequest) {
+  public void createSubcategory(CreateSubcategoryRequest createSubcategoryRequest) {
     subcategoryRepository.save(buildSubcategory(createSubcategoryRequest));
   }
 
