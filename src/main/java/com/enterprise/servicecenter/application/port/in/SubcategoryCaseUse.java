@@ -4,6 +4,6 @@ import com.enterprise.servicecenter.application.dto.request.CreateSubcategoryReq
 import com.enterprise.servicecenter.application.dto.response.SubcategoryResponse;
 
 public interface SubcategoryCaseUse {
-  void creteSubcategory(CreateSubcategoryRequest createSubcategoryRequest);
+  void createSubcategory(CreateSubcategoryRequest createSubcategoryRequest);
   SubcategoryResponse findById(String subCategoryId);
 }
