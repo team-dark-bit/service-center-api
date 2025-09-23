@@ -8,7 +8,10 @@ import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaSubcategory
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 import static com.enterprise.servicecenter.infrastructure.config.exception.RuntimeErrors.PRODUCT_NOT_FOUND;
+import static java.util.stream.Collectors.toList;
 
 @Repository
 @AllArgsConstructor
@@ -29,5 +32,14 @@ public class SubcategoryPersistence implements SubcategoryRepository {
   public Subcategory findById(String id) {
     return jpaSubcategoryRepository.findById(id)
             .map(SubcategoryDao::toDomain).orElseThrow(()-> new ApplicationException(PRODUCT_NOT_FOUND, id));
+  }
+
+  @Override
+  public List<Subcategory> findByCategoryId(String categoryId) {
+    return jpaSubcategoryRepository.findByCategoryId(categoryId)
+            .stream()
+            .map(SubcategoryDao::toDomain)
+            .toList();
+
   }
 }

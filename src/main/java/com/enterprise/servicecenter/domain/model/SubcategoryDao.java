@@ -14,6 +14,7 @@ import lombok.Setter;
 public class SubcategoryDao {
   @Id
   private String id;
+  private String categoryId;
   private String name;
   private String description;
 
