@@ -9,6 +9,8 @@ import com.enterprise.servicecenter.common.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class SubcategoryService implements SubcategoryCaseUse {
@@ -21,6 +23,14 @@ public class SubcategoryService implements SubcategoryCaseUse {
   @Override
   public SubcategoryResponse findById(String subCategoryId) {
     return mapSubcategoryResponse(subcategoryRepository.findById(subCategoryId));
+  }
+
+  @Override
+  public List<SubcategoryResponse> findByCategoryId(String categoryId) {
+    return subcategoryRepository.findByCategoryId(categoryId)
+            .stream()
+            .map(this::mapSubcategoryResponse)
+            .toList();
   }
 
   private Subcategory buildSubcategory(CreateSubcategoryRequest createSubcategoryRequest){
