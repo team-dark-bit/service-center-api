@@ -18,6 +18,7 @@ public class PackageDao {
 
     private String name;
     private String code;
+    private Boolean active;
 
     protected PackageDao () {}
 
@@ -25,6 +26,7 @@ public class PackageDao {
         this.id = pck.getId();
         this.name = pck.getName();
         this.code = pck.getCode();
+        this.active = true;
     }
 
     public Package toDomain() {

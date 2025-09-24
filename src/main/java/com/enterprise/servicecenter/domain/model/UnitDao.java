@@ -18,6 +18,7 @@ public class UnitDao {
 
     private String name;
     private String code;
+    private Boolean active;
 
     protected UnitDao () {}
 
@@ -25,6 +26,7 @@ public class UnitDao {
         this.id = unit.getId();
         this.name = unit.getName();
         this.code = unit.getCode();
+        this.active = true;
     }
 
     public Unit toDomain() {
