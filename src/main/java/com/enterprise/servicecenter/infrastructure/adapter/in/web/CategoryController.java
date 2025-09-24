@@ -44,6 +44,7 @@ public class CategoryController {
         List<CategoryResponse> categories = categoryUseCase.findAll();
         return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Categories found", categories));
     }
+
     @GetMapping("/{categoryId}/subcategories")
     public ResponseEntity<ApiResponse<List<SubcategoryResponse>>> findByCategoryId(@PathVariable String categoryId) {
       List<SubcategoryResponse> subcategories = subcategoryCaseUse.findByCategoryId(categoryId);
