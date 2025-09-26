@@ -6,6 +6,7 @@ import com.enterprise.servicecenter.application.port.in.ProductUseCase;
 import com.enterprise.servicecenter.common.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -48,6 +50,13 @@ public class ProductController {
 ////    Iterable<ProductResponse> products = productUseCase.findAll();
 ////    return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Products retrieved", products));
 //  }
+@GetMapping()
+  public ResponseEntity<ApiResponse<Page<ProductResponse>>> getAll( @RequestParam(defaultValue = "0") int page,
+                                                      @RequestParam(defaultValue = "5") int size){
+    Page<ProductResponse> productResponses = productUseCase.findAll(page, size);
+    return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "products Fund", productResponses));
+
+  }
 
 
 }
