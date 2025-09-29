@@ -5,8 +5,8 @@ import com.enterprise.servicecenter.application.dto.response.ProductResponse;
 import com.enterprise.servicecenter.application.port.in.ProductUseCase;
 import com.enterprise.servicecenter.common.response.ApiResponse;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -45,17 +45,14 @@ public class ProductController {
     return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Product found", productResponse));
   }
 
-//  @GetMapping
-//  public ResponseEntity<ApiResponse<Iterable<ProductResponse>>> findAll() {
-////    Iterable<ProductResponse> products = productUseCase.findAll();
-////    return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Products retrieved", products));
-//  }
-@GetMapping()
-  public ResponseEntity<ApiResponse<Page<ProductResponse>>> getAll( @RequestParam(defaultValue = "0") int page,
-                                                      @RequestParam(defaultValue = "5") int size){
-    Page<ProductResponse> productResponses = productUseCase.findAll(page, size);
-    return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "products Fund", productResponses));
-
+  @GetMapping
+  public ResponseEntity<ApiResponse<List<ProductResponse>>> findAll(
+          @RequestParam (defaultValue = "") String input,
+          @RequestParam (defaultValue = "0") int pageNumber,
+          @RequestParam (defaultValue = "10") int pageSize
+  ) {
+    List<ProductResponse> products = productUseCase.findAll(input, pageNumber, pageSize);
+    return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Products retrieved", products));
   }
 
 
