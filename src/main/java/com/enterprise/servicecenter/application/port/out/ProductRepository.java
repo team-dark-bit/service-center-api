@@ -1,10 +1,10 @@
 package com.enterprise.servicecenter.application.port.out;
 
 import com.enterprise.servicecenter.application.model.Product;
-import org.springframework.data.domain.Page;
+import java.util.List;
 
 public interface ProductRepository {
     void save(Product product);
     Product findById(String id);
-    Page<Product> findAll(int page, int size);
+    List<Product> findAll(String input, int pageNumber, int pageSize);
 }

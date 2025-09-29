@@ -9,13 +9,9 @@ import com.enterprise.servicecenter.application.port.out.ProductPackageRepositor
 import com.enterprise.servicecenter.application.port.out.ProductRepository;
 import com.enterprise.servicecenter.common.util.DateUtil;
 import com.enterprise.servicecenter.common.util.IdGenerator;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -37,17 +33,11 @@ public class ProductService implements ProductUseCase {
   }
 
   @Override
-  public Page<ProductResponse> findAll(int page, int size) {
-    Page<Product> productPage = productRepository.findAll(page, size);
-    List<Product> pructList = productPage.getContent();
-    if (pructList.isEmpty()) {
-      return new PageImpl<>(Collections.emptyList(), productPage.getPageable(), productPage.getTotalElements());
-    }
-    List<ProductResponse> dtoList = pructList.stream()
+  public List<ProductResponse> findAll(String input, int pageNumber, int pageSize) {
+    return productRepository.findAll(input, pageNumber, pageSize)
+            .stream()
             .map(this::mapProductResponse)
             .toList();
-    return new PageImpl<>(dtoList, productPage.getPageable(), productPage.getTotalElements());
-
   }
 
   private Product buildProduct(CreateProductRequest createProductRequest, String productId) {
