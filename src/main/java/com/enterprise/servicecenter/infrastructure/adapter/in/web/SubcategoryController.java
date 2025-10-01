@@ -40,9 +40,4 @@ public class SubcategoryController {
     SubcategoryResponse subcategoryResponse = subcategoryCaseUse.findById(id);
     return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Subcategory found",subcategoryResponse));
   }
-
-
-
-
-
 }
