@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Render backend
-        run: curl -s https://service-center-api-tx43.onrender.com/hello
+        run: curl -s https://service-center-api-9jz6.onrender.com/hello
