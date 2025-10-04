@@ -1,5 +1,6 @@
 package com.enterprise.servicecenter.application.service;
 
+import com.enterprise.servicecenter.application.dto.request.CreateProductPackageRequest;
 import com.enterprise.servicecenter.application.dto.request.CreateProductRequest;
 import com.enterprise.servicecenter.application.dto.response.ProductResponse;
 import com.enterprise.servicecenter.application.model.Product;
@@ -24,7 +25,7 @@ public class ProductService implements ProductUseCase {
   public void createProduct(CreateProductRequest createProductRequest) {
     String productId = IdGenerator.generateId();
     productRepository.save(buildProduct(createProductRequest, productId));
-    productPackageRepository.save(buildProductPackage(createProductRequest, productId));
+    productPackageRepository.saveAll(buildProductPackage(createProductRequest.getPackages(), productId));
   }
 
   @Override
@@ -51,24 +52,29 @@ public class ProductService implements ProductUseCase {
             .description(createProductRequest.getDescription())
             .active(true)
             .activeFrom(DateUtil.toLocalDateTime(createProductRequest.getActiveFrom()))
-            .barcode(createProductRequest.getBarcode())
-            .sku(createProductRequest.getSku())
             .build();
 
   }
 
-  private ProductPackage buildProductPackage(CreateProductRequest createProductRequest, String productId) {
-    ProductPackage productPackage = new ProductPackage();
-    productPackage.setId(IdGenerator.generateId());
-    productPackage.setProductId(productId);
-    productPackage.setPackageId(createProductRequest.getPackageId());
-    productPackage.setUnitId(createProductRequest.getUnitId());
-    productPackage.setQuantity(Double.parseDouble(createProductRequest.getQuantity()));
-    productPackage.setCodedName(createProductRequest.getCodedName());
-    productPackage.setImageUrl(createProductRequest.getImageUrl());
-    productPackage.setStatus(createProductRequest.getStatus());
+  private List<ProductPackage> buildProductPackage(List<CreateProductPackageRequest> productPackageRequests,
+                                                   String productId) {
 
-    return productPackage;
+    return productPackageRequests.stream()
+            .map(productPackageRequest -> {
+              ProductPackage productPackage = new ProductPackage();
+              productPackage.setId(IdGenerator.generateId());
+              productPackage.setProductId(productId);
+              productPackage.setPackageId(productPackageRequest.getPackageId());
+              productPackage.setUnitId(productPackageRequest.getUnitId());
+              productPackage.setQuantity(Double.parseDouble(productPackageRequest.getQuantity()));
+              productPackage.setCodedName(productPackageRequest.getCodedName());
+              productPackage.setImageUrl(productPackageRequest.getImageUrl());
+              productPackage.setStatus(productPackageRequest.getStatus());
+              productPackage.setBarcode(productPackageRequest.getBarcode());
+              productPackage.setSku(productPackageRequest.getSku());
+              return productPackage;
+            })
+            .toList();
   }
 
   private ProductResponse mapProductResponse(Product product) {

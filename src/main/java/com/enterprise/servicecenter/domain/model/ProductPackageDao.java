@@ -4,6 +4,7 @@ import com.enterprise.servicecenter.application.model.ProductPackage;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +24,9 @@ public class ProductPackageDao {
     private String codedName;
     private String imageUrl;
     private Boolean status;
+    private String barcode;
+    private String sku;
+    private LocalDateTime created;
 
     protected ProductPackageDao () {}
 
@@ -35,6 +39,9 @@ public class ProductPackageDao {
         this.codedName = productPackage.getCodedName();
         this.imageUrl = productPackage.getImageUrl();
         this.status = productPackage.getStatus();
+        this.barcode = productPackage.getBarcode();
+        this.sku = productPackage.getSku();
+        this.created = LocalDateTime.now();
     }
 
     public ProductPackage toDomain() {
@@ -47,6 +54,8 @@ public class ProductPackageDao {
         productPackage.setCodedName(this.codedName);
         productPackage.setImageUrl(this.imageUrl);
         productPackage.setStatus(this.status);
+        productPackage.setBarcode(this.barcode);
+        productPackage.setSku(this.sku);
         return productPackage;
     }
 
