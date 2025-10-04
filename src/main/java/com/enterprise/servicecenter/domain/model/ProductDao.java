@@ -26,9 +26,7 @@ public class ProductDao {
     private Boolean active;
     private LocalDateTime activeFrom;
     private LocalDateTime activeTo;
-    private String barcode;
-    private String sku;
-
+    private LocalDateTime created;
 
     protected ProductDao() {
     }
@@ -44,8 +42,7 @@ public class ProductDao {
         this.active = product.getActive();
         this.activeFrom = product.getActiveFrom();
         this.activeTo = product.getActiveTo();
-        this.barcode = product.getBarcode();
-        this.sku = product.getSku();
+        this.created = LocalDateTime.now();
     }
 
     public Product toDomain() {
@@ -60,8 +57,7 @@ public class ProductDao {
         product.setActive(this.active);
         product.setActiveFrom(this.activeFrom);
         product.setActiveTo(this.activeTo);
-        product.setBarcode(this.barcode);
-        product.setSku(this.sku);
+
         return product;
     }
 

@@ -25,7 +25,5 @@ public class Product {
     private Boolean active;
     private LocalDateTime activeFrom;
     private LocalDateTime activeTo;
-    private String barcode;
-    private String sku;
 
 }
