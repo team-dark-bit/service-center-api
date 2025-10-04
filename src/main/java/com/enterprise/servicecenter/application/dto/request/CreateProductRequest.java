@@ -1,10 +1,13 @@
 package com.enterprise.servicecenter.application.dto.request;
 
+import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class CreateProductRequest {
 
   private String brandId;
@@ -14,14 +17,7 @@ public class CreateProductRequest {
   private String displayName;
   private String description;
   private String activeFrom;
-  private String barcode;
-  private String sku;
 
-  private String packageId;
-  private String unitId;
-  private String quantity;
-  private String codedName;
-  private String imageUrl;
-  private Boolean status;
+  private List<CreateProductPackageRequest> packages;
 
 }

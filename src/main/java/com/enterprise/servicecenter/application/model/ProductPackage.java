@@ -17,5 +17,7 @@ public class ProductPackage {
     private String codedName;
     private String imageUrl;
     private Boolean status;
+    private String barcode;
+    private String sku;
 
 }
