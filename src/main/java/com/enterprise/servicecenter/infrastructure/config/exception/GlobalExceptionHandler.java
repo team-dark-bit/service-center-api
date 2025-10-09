@@ -1,6 +1,6 @@
 package com.enterprise.servicecenter.infrastructure.config.exception;
 
-import com.enterprise.servicecenter.common.response.ApiResponse;
+import com.enterprise.servicecenter.commons.response.ApiResponse;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

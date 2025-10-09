@@ -3,7 +3,7 @@ package com.enterprise.servicecenter.infrastructure.adapter.in.web;
 import com.enterprise.servicecenter.application.dto.request.CreateSubcategoryRequest;
 import com.enterprise.servicecenter.application.dto.response.SubcategoryResponse;
 import com.enterprise.servicecenter.application.port.in.SubcategoryCaseUse;
-import com.enterprise.servicecenter.common.response.ApiResponse;
+import com.enterprise.servicecenter.commons.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -2,10 +2,10 @@ package com.enterprise.servicecenter.application.service;
 
 import com.enterprise.servicecenter.application.dto.request.CreateCategoryRequest;
 import com.enterprise.servicecenter.application.dto.response.CategoryResponse;
-import com.enterprise.servicecenter.application.model.Category;
+import com.enterprise.servicecenter.domain.model.Category;
 import com.enterprise.servicecenter.application.port.in.CategoryUseCase;
 import com.enterprise.servicecenter.application.port.out.CategoryRepository;
-import com.enterprise.servicecenter.common.util.IdGenerator;
+import com.enterprise.servicecenter.commons.util.IdGenerator;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
