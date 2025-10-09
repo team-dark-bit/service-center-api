@@ -1,4 +1,4 @@
-package com.enterprise.servicecenter.common.response;
+package com.enterprise.servicecenter.commons.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;

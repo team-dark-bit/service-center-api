@@ -2,10 +2,10 @@ package com.enterprise.servicecenter.application.service;
 
 import com.enterprise.servicecenter.application.dto.request.CreatePackageRequest;
 import com.enterprise.servicecenter.application.dto.response.PackageResponse;
-import com.enterprise.servicecenter.application.model.Package;
+import com.enterprise.servicecenter.domain.model.Package;
 import com.enterprise.servicecenter.application.port.in.PackageUseCase;
 import com.enterprise.servicecenter.application.port.out.PackageRepository;
-import com.enterprise.servicecenter.common.util.IdGenerator;
+import com.enterprise.servicecenter.commons.util.IdGenerator;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.enterprise.servicecenter.common.util;
+package com.enterprise.servicecenter.commons.util;
 
 import java.util.UUID;
 

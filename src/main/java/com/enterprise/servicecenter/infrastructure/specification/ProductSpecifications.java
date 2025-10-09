@@ -1,7 +1,7 @@
-package com.enterprise.servicecenter.domain.specification;
+package com.enterprise.servicecenter.infrastructure.specification;
 
 import org.springframework.data.jpa.domain.Specification;
-import com.enterprise.servicecenter.domain.model.ProductDao;
+import com.enterprise.servicecenter.infrastructure.database.entity.ProductDao;
 
 public class ProductSpecifications {
     public static Specification<ProductDao> search(String term) {

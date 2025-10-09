@@ -1,6 +1,6 @@
-package com.enterprise.servicecenter.domain.model;
+package com.enterprise.servicecenter.infrastructure.database.entity;
 
-import com.enterprise.servicecenter.application.model.Category;
+import com.enterprise.servicecenter.domain.model.Category;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -20,13 +20,13 @@ public class CategoryDao {
 
   protected CategoryDao(){}
 
-  public CategoryDao(Category category){
+  public CategoryDao(Category category) {
     this.id = category.getId();
     this.name = category.getName();
     this.description = category.getDescription();
     this.active = category.getActive();
   }
-  public Category toDomain(){
+  public Category toDomain() {
     Category category = new Category();
     category.setId(this.id);
     category.setName(this.name);

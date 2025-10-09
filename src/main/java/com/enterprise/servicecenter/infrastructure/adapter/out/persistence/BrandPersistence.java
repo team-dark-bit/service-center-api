@@ -1,8 +1,8 @@
 package com.enterprise.servicecenter.infrastructure.adapter.out.persistence;
 
-import com.enterprise.servicecenter.application.model.Brand;
+import com.enterprise.servicecenter.domain.model.Brand;
 import com.enterprise.servicecenter.application.port.out.BrandRepository;
-import com.enterprise.servicecenter.domain.model.BrandDao;
+import com.enterprise.servicecenter.infrastructure.database.entity.BrandDao;
 import com.enterprise.servicecenter.infrastructure.config.exception.ApplicationException;
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaBrandRepository;
 import java.util.List;

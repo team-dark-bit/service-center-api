@@ -1,6 +1,6 @@
 package com.enterprise.servicecenter.application.port.out;
 
-import com.enterprise.servicecenter.application.model.Unit;
+import com.enterprise.servicecenter.domain.model.Unit;
 import java.util.List;
 
 public interface UnitRepository {

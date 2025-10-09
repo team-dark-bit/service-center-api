@@ -1,6 +1,6 @@
 package com.enterprise.servicecenter.application.port.out;
 
-import com.enterprise.servicecenter.application.model.Brand;
+import com.enterprise.servicecenter.domain.model.Brand;
 import java.util.List;
 
 public interface BrandRepository {

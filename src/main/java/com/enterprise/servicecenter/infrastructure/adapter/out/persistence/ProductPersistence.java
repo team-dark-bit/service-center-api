@@ -1,9 +1,9 @@
 package com.enterprise.servicecenter.infrastructure.adapter.out.persistence;
 
-import com.enterprise.servicecenter.application.model.Product;
+import com.enterprise.servicecenter.domain.model.Product;
 import com.enterprise.servicecenter.application.port.out.ProductRepository;
-import com.enterprise.servicecenter.domain.model.ProductDao;
-import com.enterprise.servicecenter.domain.specification.ProductSpecifications;
+import com.enterprise.servicecenter.infrastructure.database.entity.ProductDao;
+import com.enterprise.servicecenter.infrastructure.specification.ProductSpecifications;
 import com.enterprise.servicecenter.infrastructure.config.exception.ApplicationException;
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaProductRepository;
 import java.util.List;

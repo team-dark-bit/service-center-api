@@ -5,7 +5,7 @@ import com.enterprise.servicecenter.application.dto.response.CategoryResponse;
 import com.enterprise.servicecenter.application.dto.response.SubcategoryResponse;
 import com.enterprise.servicecenter.application.port.in.CategoryUseCase;
 import com.enterprise.servicecenter.application.port.in.SubcategoryCaseUse;
-import com.enterprise.servicecenter.common.response.ApiResponse;
+import com.enterprise.servicecenter.commons.response.ApiResponse;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

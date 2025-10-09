@@ -1,6 +1,6 @@
 package com.enterprise.servicecenter.application.port.out;
 
-import com.enterprise.servicecenter.application.model.Category;
+import com.enterprise.servicecenter.domain.model.Category;
 import java.util.List;
 
 public interface CategoryRepository {

@@ -1,6 +1,6 @@
-package com.enterprise.servicecenter.domain.model;
+package com.enterprise.servicecenter.infrastructure.database.entity;
 
-import com.enterprise.servicecenter.application.model.Subcategory;
+import com.enterprise.servicecenter.domain.model.Subcategory;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;

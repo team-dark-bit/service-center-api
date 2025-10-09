@@ -1,6 +1,6 @@
-package com.enterprise.servicecenter.common.util.validation;
+package com.enterprise.servicecenter.commons.util.validation;
 
-import com.enterprise.servicecenter.common.util.validation.annotation.IsDecimal;
+import com.enterprise.servicecenter.commons.util.validation.annotation.IsDecimal;
 import com.enterprise.servicecenter.infrastructure.config.exception.ApplicationException;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

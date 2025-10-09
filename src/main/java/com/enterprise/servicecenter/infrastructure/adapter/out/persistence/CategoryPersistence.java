@@ -1,8 +1,8 @@
 package com.enterprise.servicecenter.infrastructure.adapter.out.persistence;
 
-import com.enterprise.servicecenter.application.model.Category;
+import com.enterprise.servicecenter.domain.model.Category;
 import com.enterprise.servicecenter.application.port.out.CategoryRepository;
-import com.enterprise.servicecenter.domain.model.CategoryDao;
+import com.enterprise.servicecenter.infrastructure.database.entity.CategoryDao;
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaCategoryRepository;
 import java.util.List;
 import org.springframework.stereotype.Repository;

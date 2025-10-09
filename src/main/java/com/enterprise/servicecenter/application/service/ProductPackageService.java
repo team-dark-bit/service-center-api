@@ -1,7 +1,7 @@
 package com.enterprise.servicecenter.application.service;
 
 import com.enterprise.servicecenter.application.dto.request.CreateProductPackageRequest;
-import com.enterprise.servicecenter.application.model.ProductPackage;
+import com.enterprise.servicecenter.domain.model.ProductPackage;
 import com.enterprise.servicecenter.application.port.in.ProductPackageUseCase;
 import com.enterprise.servicecenter.application.port.out.ProductPackageRepository;
 import lombok.RequiredArgsConstructor;
