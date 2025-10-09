@@ -1,8 +1,8 @@
 package com.enterprise.servicecenter.infrastructure.adapter.out.persistence;
 
-import com.enterprise.servicecenter.application.model.Unit;
+import com.enterprise.servicecenter.domain.model.Unit;
 import com.enterprise.servicecenter.application.port.out.UnitRepository;
-import com.enterprise.servicecenter.domain.model.UnitDao;
+import com.enterprise.servicecenter.infrastructure.database.entity.UnitDao;
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaUnitRepository;
 import java.util.List;
 import org.springframework.stereotype.Repository;

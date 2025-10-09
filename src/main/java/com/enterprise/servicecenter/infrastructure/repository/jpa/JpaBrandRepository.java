@@ -1,6 +1,6 @@
 package com.enterprise.servicecenter.infrastructure.repository.jpa;
 
-import com.enterprise.servicecenter.domain.model.BrandDao;
+import com.enterprise.servicecenter.infrastructure.database.entity.BrandDao;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 

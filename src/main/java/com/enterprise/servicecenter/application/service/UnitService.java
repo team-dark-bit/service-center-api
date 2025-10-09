@@ -2,10 +2,10 @@ package com.enterprise.servicecenter.application.service;
 
 import com.enterprise.servicecenter.application.dto.request.CreateUnitRequest;
 import com.enterprise.servicecenter.application.dto.response.UnitResponse;
-import com.enterprise.servicecenter.application.model.Unit;
+import com.enterprise.servicecenter.domain.model.Unit;
 import com.enterprise.servicecenter.application.port.in.UnitUseCase;
 import com.enterprise.servicecenter.application.port.out.UnitRepository;
-import com.enterprise.servicecenter.common.util.IdGenerator;
+import com.enterprise.servicecenter.commons.util.IdGenerator;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

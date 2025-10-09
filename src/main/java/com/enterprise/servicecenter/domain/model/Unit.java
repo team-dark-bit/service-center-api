@@ -1,4 +1,4 @@
-package com.enterprise.servicecenter.application.model;
+package com.enterprise.servicecenter.domain.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

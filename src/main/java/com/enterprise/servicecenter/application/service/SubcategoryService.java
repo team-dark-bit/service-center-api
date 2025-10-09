@@ -2,10 +2,10 @@ package com.enterprise.servicecenter.application.service;
 
 import com.enterprise.servicecenter.application.dto.request.CreateSubcategoryRequest;
 import com.enterprise.servicecenter.application.dto.response.SubcategoryResponse;
-import com.enterprise.servicecenter.application.model.Subcategory;
+import com.enterprise.servicecenter.domain.model.Subcategory;
 import com.enterprise.servicecenter.application.port.in.SubcategoryCaseUse;
 import com.enterprise.servicecenter.application.port.out.SubcategoryRepository;
-import com.enterprise.servicecenter.common.util.IdGenerator;
+import com.enterprise.servicecenter.commons.util.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

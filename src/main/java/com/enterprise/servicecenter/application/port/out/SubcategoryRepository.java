@@ -1,7 +1,6 @@
 package com.enterprise.servicecenter.application.port.out;
 
-import com.enterprise.servicecenter.application.model.Subcategory;
-import com.enterprise.servicecenter.domain.model.SubcategoryDao;
+import com.enterprise.servicecenter.domain.model.Subcategory;
 
 import java.util.List;
 

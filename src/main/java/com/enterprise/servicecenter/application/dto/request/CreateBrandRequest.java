@@ -1,6 +1,6 @@
 package com.enterprise.servicecenter.application.dto.request;
 
-import com.enterprise.servicecenter.common.util.validation.annotation.NotBlank;
+import com.enterprise.servicecenter.commons.util.validation.annotation.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
