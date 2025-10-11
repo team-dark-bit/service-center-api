@@ -35,10 +35,7 @@ public class ProductService implements ProductUseCase {
 
   @Override
   public List<ProductResponse> findAll(String input, int pageNumber, int pageSize) {
-    return productRepository.findAll(input, pageNumber, pageSize)
-            .stream()
-            .map(this::mapProductResponse)
-            .toList();
+    return productRepository.findAll(input, pageNumber, pageSize);
   }
 
   private Product buildProduct(CreateProductRequest createProductRequest, String productId) {
@@ -79,10 +76,8 @@ public class ProductService implements ProductUseCase {
 
   private ProductResponse mapProductResponse(Product product) {
     return ProductResponse.builder()
-            .id(product.getId())
-            .name(product.getName())
-            .description(product.getDescription())
-            //.price(product.getPrice().toString())
+            .productId(product.getId())
+            .productName(product.getName())
             .build();
   }
 
