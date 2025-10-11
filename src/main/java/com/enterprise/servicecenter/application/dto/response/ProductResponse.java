@@ -12,8 +12,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class ProductResponse {
-    private String id;
-    private String name;
-    private String description;
-    private String price;
+    private String productId;
+    private String productName;
+    private String sku;
+    private String barcode;
 }

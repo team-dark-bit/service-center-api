@@ -1,15 +1,15 @@
 package com.enterprise.servicecenter.infrastructure.adapter.out.persistence;
 
-import com.enterprise.servicecenter.domain.model.Product;
+import com.enterprise.servicecenter.application.dto.response.ProductResponse;
 import com.enterprise.servicecenter.application.port.out.ProductRepository;
-import com.enterprise.servicecenter.infrastructure.database.entity.ProductDao;
-import com.enterprise.servicecenter.infrastructure.specification.ProductSpecifications;
+import com.enterprise.servicecenter.domain.model.Product;
+import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.ProductProjectionMapper;
 import com.enterprise.servicecenter.infrastructure.config.exception.ApplicationException;
+import com.enterprise.servicecenter.infrastructure.database.entity.ProductDao;
+import com.enterprise.servicecenter.infrastructure.database.projection.ProductPackageProductProjection;
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaProductRepository;
 import java.util.List;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 import static com.enterprise.servicecenter.infrastructure.config.exception.RuntimeErrors.PRODUCT_NOT_FOUND;
 
@@ -17,9 +17,12 @@ import static com.enterprise.servicecenter.infrastructure.config.exception.Runti
 public class ProductPersistence implements ProductRepository {
 
     private final JpaProductRepository jpaProductRepository;
+    private final ProductProjectionMapper mapper;
 
-    public ProductPersistence(JpaProductRepository jpaProductRepository) {
+    public ProductPersistence(JpaProductRepository jpaProductRepository,
+                              ProductProjectionMapper mapper) {
         this.jpaProductRepository = jpaProductRepository;
+        this.mapper = mapper;
     }
 
     @Override
@@ -36,13 +39,13 @@ public class ProductPersistence implements ProductRepository {
     }
 
     @Override
-    public List<Product> findAll(String input, int pageNumber, int pageSize) {
+    public List<ProductResponse> findAll(String input, int pageNumber, int pageSize) {
+        List<ProductPackageProductProjection> projections = jpaProductRepository.searchProductsWithPackageTextPaged(input, pageNumber, pageSize);
 
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<ProductDao> page = jpaProductRepository.findAll(ProductSpecifications.search(input), pageable);
-        return page.getContent().stream()
-                .map(ProductDao::toDomain)
-                .toList();
+        return projections.stream()
+                .map(mapper::toResponse)
+                .collect(Collectors.toList());
+
     }
 
 }
