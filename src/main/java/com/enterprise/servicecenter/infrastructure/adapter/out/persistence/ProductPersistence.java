@@ -3,7 +3,7 @@ package com.enterprise.servicecenter.infrastructure.adapter.out.persistence;
 import com.enterprise.servicecenter.application.dto.response.ProductResponse;
 import com.enterprise.servicecenter.application.port.out.ProductRepository;
 import com.enterprise.servicecenter.domain.model.Product;
-import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.ProductProjectionMapper;
+import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.projection.ProductProjectionResponseMapper;
 import com.enterprise.servicecenter.infrastructure.config.exception.ApplicationException;
 import com.enterprise.servicecenter.infrastructure.database.entity.ProductDao;
 import com.enterprise.servicecenter.infrastructure.database.projection.ProductPackageProductProjection;
@@ -17,10 +17,10 @@ import static com.enterprise.servicecenter.infrastructure.config.exception.Runti
 public class ProductPersistence implements ProductRepository {
 
     private final JpaProductRepository jpaProductRepository;
-    private final ProductProjectionMapper mapper;
+    private final ProductProjectionResponseMapper mapper;
 
     public ProductPersistence(JpaProductRepository jpaProductRepository,
-                              ProductProjectionMapper mapper) {
+                              ProductProjectionResponseMapper mapper) {
         this.jpaProductRepository = jpaProductRepository;
         this.mapper = mapper;
     }
