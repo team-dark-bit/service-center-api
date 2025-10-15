@@ -6,17 +6,15 @@ import com.enterprise.servicecenter.infrastructure.database.entity.BrandDao;
 import com.enterprise.servicecenter.infrastructure.config.exception.ApplicationException;
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaBrandRepository;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import static com.enterprise.servicecenter.infrastructure.config.exception.RuntimeErrors.BRAND_NOT_FOUND;
 
 @Repository
+@RequiredArgsConstructor
 public class BrandPersistence implements BrandRepository {
 
   private final JpaBrandRepository jpaBrandRepository;
-
-  public BrandPersistence(JpaBrandRepository jpaBrandRepository) {
-    this.jpaBrandRepository = jpaBrandRepository;
-  }
 
   @Override
   public void save(Brand brand) {

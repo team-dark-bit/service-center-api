@@ -3,21 +3,19 @@ package com.enterprise.servicecenter.infrastructure.adapter.out.persistence;
 import com.enterprise.servicecenter.application.port.out.SupplierRepository;
 import com.enterprise.servicecenter.domain.model.Supplier;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.domain.SupplierDaoDomainMapper;
+import com.enterprise.servicecenter.infrastructure.config.exception.ApplicationException;
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaSupplierRepository;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import static com.enterprise.servicecenter.infrastructure.config.exception.RuntimeErrors.SUPPLIER_NOT_FOUND;
 
 @Repository
+@RequiredArgsConstructor
 public class SupplierPersistence implements SupplierRepository {
 
   private final JpaSupplierRepository jpaSupplierRepository;
   private final SupplierDaoDomainMapper supplierDaoDomainMapper;
-
-  public SupplierPersistence(JpaSupplierRepository jpaSupplierRepository,
-                             SupplierDaoDomainMapper supplierDaoDomainMapper) {
-    this.jpaSupplierRepository = jpaSupplierRepository;
-      this.supplierDaoDomainMapper = supplierDaoDomainMapper;
-  }
 
   @Override
   public void save(Supplier supplier) {
@@ -26,11 +24,16 @@ public class SupplierPersistence implements SupplierRepository {
 
   @Override
   public Supplier findById(String id) {
-    return null;
+    return jpaSupplierRepository.findById(id)
+        .map(supplierDaoDomainMapper::toDomain)
+        .orElseThrow(() -> new ApplicationException(SUPPLIER_NOT_FOUND, id));
   }
 
   @Override
   public List<Supplier> findAllByActiveTrue() {
-    return List.of();
+    return jpaSupplierRepository.findAllByActiveTrue()
+            .stream()
+            .map(supplierDaoDomainMapper::toDomain)
+            .toList();
   }
 }

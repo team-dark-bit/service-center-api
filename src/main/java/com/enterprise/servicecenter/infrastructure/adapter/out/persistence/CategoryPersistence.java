@@ -5,16 +5,14 @@ import com.enterprise.servicecenter.application.port.out.CategoryRepository;
 import com.enterprise.servicecenter.infrastructure.database.entity.CategoryDao;
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaCategoryRepository;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class CategoryPersistence implements CategoryRepository {
 
     private final JpaCategoryRepository jpaCategoryRepository;
-
-    public CategoryPersistence(JpaCategoryRepository jpaCategoryRepository) {
-        this.jpaCategoryRepository = jpaCategoryRepository;
-    }
 
     @Override
     public void save(Category category) {
