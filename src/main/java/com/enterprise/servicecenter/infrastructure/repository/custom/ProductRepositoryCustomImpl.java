@@ -1,4 +1,4 @@
-package com.enterprise.servicecenter.infrastructure.repository.jpa;
+package com.enterprise.servicecenter.infrastructure.repository.custom;
 
 import com.enterprise.servicecenter.infrastructure.database.entity.ProductDao;
 import com.enterprise.servicecenter.infrastructure.database.entity.ProductPackageDao;

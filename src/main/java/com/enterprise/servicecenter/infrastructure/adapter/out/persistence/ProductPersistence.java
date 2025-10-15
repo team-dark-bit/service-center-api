@@ -10,20 +10,16 @@ import com.enterprise.servicecenter.infrastructure.database.projection.ProductPa
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaProductRepository;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import static com.enterprise.servicecenter.infrastructure.config.exception.RuntimeErrors.PRODUCT_NOT_FOUND;
 
 @Repository
+@RequiredArgsConstructor
 public class ProductPersistence implements ProductRepository {
 
     private final JpaProductRepository jpaProductRepository;
     private final ProductProjectionResponseMapper mapper;
-
-    public ProductPersistence(JpaProductRepository jpaProductRepository,
-                              ProductProjectionResponseMapper mapper) {
-        this.jpaProductRepository = jpaProductRepository;
-        this.mapper = mapper;
-    }
 
     @Override
     public void save(Product product) {

@@ -9,6 +9,7 @@ import org.mapstruct.Named;
 
 @Mapper(componentModel = "spring")
 public interface SupplierDaoDomainMapper {
+
     Supplier toDomain(SupplierDao dao);
 
     @Mapping(target = "id", source = "id", qualifiedByName = "generateId")

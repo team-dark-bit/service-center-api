@@ -5,16 +5,14 @@ import com.enterprise.servicecenter.application.port.out.ProductPackageRepositor
 import com.enterprise.servicecenter.infrastructure.database.entity.ProductPackageDao;
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaProductPackageRepository;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class ProductPackagePersistence implements ProductPackageRepository {
 
     private final JpaProductPackageRepository jpaProductPackageRepository;
-
-    public ProductPackagePersistence(JpaProductPackageRepository jpaProductPackageRepository) {
-        this.jpaProductPackageRepository = jpaProductPackageRepository;
-    }
 
     @Override
     public void save(ProductPackage productPackage) {
