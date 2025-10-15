@@ -5,16 +5,14 @@ import com.enterprise.servicecenter.application.port.out.UnitRepository;
 import com.enterprise.servicecenter.infrastructure.database.entity.UnitDao;
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaUnitRepository;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class UnitPersistence implements UnitRepository {
 
     private final JpaUnitRepository jpaUnitRepository;
-
-    public UnitPersistence(JpaUnitRepository jpaUnitRepository) {
-        this.jpaUnitRepository = jpaUnitRepository;
-    }
 
     @Override
     public void save(Unit unit) {

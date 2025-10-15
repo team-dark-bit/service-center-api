@@ -12,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class SupplierResponse {
+  private String id;
   private String name;
   private String documentType;
   private String documentNumber;
