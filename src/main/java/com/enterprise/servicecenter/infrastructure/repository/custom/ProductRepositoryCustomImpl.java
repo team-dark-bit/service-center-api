@@ -25,25 +25,26 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
         CriteriaQuery<ProductPackageProductProjection> cq = cb.createQuery(ProductPackageProductProjection.class);
 
         Root<ProductDao> productRoot = cq.from(ProductDao.class);
-        Root<ProductPackageDao> packageRoot = cq.from(ProductPackageDao.class);
+        Root<ProductPackageDao> productPackageRoot = cq.from(ProductPackageDao.class);
 
         List<Predicate> predicates = new ArrayList<>();
-        predicates.add(cb.equal(productRoot.get("id"), packageRoot.get("productId")));
+        predicates.add(cb.equal(productRoot.get("id"), productPackageRoot.get("productId")));
 
         if (text != null && !text.isEmpty()) {
             String pattern = "%" + text.toLowerCase() + "%";
             Predicate namePredicate = cb.like(cb.lower(productRoot.get("name")), pattern);
-            Predicate skuPredicate = cb.like(cb.lower(packageRoot.get("sku")), pattern);
-            Predicate barcodePredicate = cb.like(cb.lower(packageRoot.get("barcode")), pattern);
+            Predicate skuPredicate = cb.like(cb.lower(productPackageRoot.get("sku")), pattern);
+            Predicate barcodePredicate = cb.like(cb.lower(productPackageRoot.get("barcode")), pattern);
             predicates.add(cb.or(namePredicate, skuPredicate, barcodePredicate));
         }
 
         cq.select(cb.construct(
                 ProductPackageProductProjection.class,
                 productRoot.get("id"),
+                productPackageRoot.get("id"),
                 productRoot.get("name"),
-                packageRoot.get("sku"),
-                packageRoot.get("barcode")
+                productPackageRoot.get("sku"),
+                productPackageRoot.get("barcode")
         )).where(predicates.toArray(new Predicate[0]));
 
         // Opcional: Agregar orden

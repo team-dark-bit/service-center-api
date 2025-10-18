@@ -13,6 +13,7 @@ import lombok.Setter;
 @Builder
 public class ProductResponse {
     private String productId;
+    private String productPackageId;
     private String productName;
     private String sku;
     private String barcode;
