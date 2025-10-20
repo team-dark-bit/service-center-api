@@ -15,7 +15,7 @@ public class PurchasePersistence implements PurchaseRepository {
   private final PurchaseDaoDomainMapper purchaseDaoDomainMapper;
 
   @Override
-  public void save(Purchase purchase) {
-    jpaPurchaseRepository.save(purchaseDaoDomainMapper.toDao(purchase));
+  public String save(Purchase purchase) {
+    return jpaPurchaseRepository.save(purchaseDaoDomainMapper.toDao(purchase)).getId();
   }
 }
