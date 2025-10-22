@@ -1,6 +1,5 @@
 package com.enterprise.servicecenter.infrastructure.database.entity;
 
-import com.enterprise.servicecenter.domain.model.Subcategory;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -18,18 +17,6 @@ public class SubcategoryDao {
   private String name;
   private String description;
 
-  protected SubcategoryDao(){}
+  public SubcategoryDao() {}
 
-  public SubcategoryDao(Subcategory subcategory){
-    this.id = subcategory.getId();
-    this.name = subcategory.getName();
-    this.description = subcategory.getDescription();
-  }
-  public Subcategory toDomain(){
-    Subcategory subcategory = new Subcategory();
-    subcategory.setId(this.id);
-    subcategory.setName(this.name);
-    subcategory.setDescription(this.description);
-    return subcategory;
-  }
 }

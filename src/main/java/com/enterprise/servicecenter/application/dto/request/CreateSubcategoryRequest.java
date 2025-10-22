@@ -8,4 +8,5 @@ import lombok.NoArgsConstructor;
 public class CreateSubcategoryRequest {
   private String name;
   private String description;
+  private String categoryId;
 }

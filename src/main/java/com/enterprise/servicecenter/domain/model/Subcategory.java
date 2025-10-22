@@ -11,4 +11,5 @@ public class Subcategory {
   private String id;
   private String name;
   private String description;
+  private String categoryId;
 }
