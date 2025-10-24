@@ -4,6 +4,6 @@ import com.enterprise.servicecenter.domain.model.Category;
 import java.util.List;
 
 public interface CategoryRepository {
-    void save(Category category);
-    List<Category> findAllByActiveTrue();
+  void save(Category category);
+  List<Category> findAllByActiveTrue();
 }
