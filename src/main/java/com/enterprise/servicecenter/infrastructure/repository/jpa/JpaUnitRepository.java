@@ -5,5 +5,5 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface JpaUnitRepository extends JpaRepository<UnitDao, String> {
-    List<UnitDao> findAllByActiveTrue();
+  List<UnitDao> findAllByActiveTrue();
 }

@@ -8,8 +8,8 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = {IdMapper.class})
 public interface SupplierDaoDomainMapper {
 
-    Supplier toDomain(SupplierDao dao);
+  Supplier toDomain(SupplierDao dao);
 
-    @Mapping(target = "id", source = "id", qualifiedByName = "generateId")
-    SupplierDao toDao(Supplier domain);
+  @Mapping(target = "id", source = "id", qualifiedByName = "generateId")
+  SupplierDao toDao(Supplier domain);
 }
