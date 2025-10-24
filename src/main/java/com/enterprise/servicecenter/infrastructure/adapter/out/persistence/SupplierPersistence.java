@@ -25,8 +25,8 @@ public class SupplierPersistence implements SupplierRepository {
   @Override
   public Supplier findById(String id) {
     return jpaSupplierRepository.findById(id)
-        .map(supplierDaoDomainMapper::toDomain)
-        .orElseThrow(() -> new ApplicationException(SUPPLIER_NOT_FOUND, id));
+            .map(supplierDaoDomainMapper::toDomain)
+            .orElseThrow(() -> new ApplicationException(SUPPLIER_NOT_FOUND, id));
   }
 
   @Override

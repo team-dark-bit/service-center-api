@@ -12,19 +12,19 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class CategoryPersistence implements CategoryRepository {
 
-    private final JpaCategoryRepository jpaCategoryRepository;
+  private final JpaCategoryRepository jpaCategoryRepository;
 
-    @Override
-    public void save(Category category) {
-        CategoryDao categoryDao = new CategoryDao(category);
-        this.jpaCategoryRepository.save(categoryDao);
-    }
+  @Override
+  public void save(Category category) {
+    CategoryDao categoryDao = new CategoryDao(category);
+    this.jpaCategoryRepository.save(categoryDao);
+  }
 
-    @Override
-    public List<Category> findAllByActiveTrue() {
-        return jpaCategoryRepository.findAllByActiveTrue()
-                .stream()
-                .map(CategoryDao::toDomain)
-                .toList();
-    }
+  @Override
+  public List<Category> findAllByActiveTrue() {
+    return jpaCategoryRepository.findAllByActiveTrue()
+            .stream()
+            .map(CategoryDao::toDomain)
+            .toList();
+  }
 }

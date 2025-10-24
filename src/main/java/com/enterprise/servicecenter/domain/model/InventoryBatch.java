@@ -1,19 +1,18 @@
-package com.enterprise.servicecenter.infrastructure.database.entity;
+package com.enterprise.servicecenter.domain.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "InventoryBatch")
-@Table(name = "inventory_batches")
-public class InventoryBatchDao {
-
-  @Id
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class InventoryBatch {
   private String id;
   private String productPackageId;
   private LocalDateTime created;
@@ -21,5 +20,4 @@ public class InventoryBatchDao {
   private Integer quantityReceived;
   private Integer quantityAvailable;
   private Double purchaseUnitPrice;
-
 }
