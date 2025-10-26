@@ -2,10 +2,13 @@ package com.enterprise.servicecenter.infrastructure.adapter.in.web;
 
 import com.enterprise.servicecenter.application.dto.request.CreateProductRequest;
 import com.enterprise.servicecenter.application.dto.response.ProductResponse;
+import com.enterprise.servicecenter.application.dto.response.product.ProductCatalogResponse;
+import com.enterprise.servicecenter.application.port.in.ProductQueryUseCase;
 import com.enterprise.servicecenter.application.port.in.ProductUseCase;
 import com.enterprise.servicecenter.commons.response.ApiResponse;
 import jakarta.validation.Valid;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/products")
 @Slf4j
 @Validated
+@RequiredArgsConstructor
 public class ProductController {
 
   private final ProductUseCase productUseCase;
-
-  public ProductController(ProductUseCase productUseCase) {
-    this.productUseCase = productUseCase;
-  }
+  private final ProductQueryUseCase productQueryUseCase;
 
   @PostMapping
   public ResponseEntity<ApiResponse<Void>> createProduct(
@@ -55,5 +56,15 @@ public class ProductController {
     return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Products retrieved", products));
   }
 
+  @GetMapping("/catalog")
+  public ResponseEntity<ApiResponse<List<ProductCatalogResponse>>> listForCatalog(
+          @RequestParam (defaultValue = "") String input,
+          @RequestParam (defaultValue = "0") int pageNumber,
+          @RequestParam (defaultValue = "10") int pageSize
+  ) {
+    List<ProductCatalogResponse> products = productQueryUseCase.listForCatalog(input, pageNumber, pageSize);
+    return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Products retrieved", products));
+  }
 
 }
+
