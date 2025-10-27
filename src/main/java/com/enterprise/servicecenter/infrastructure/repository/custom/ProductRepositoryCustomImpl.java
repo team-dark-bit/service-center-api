@@ -104,21 +104,20 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
             ));
         }
 
-        // Construir selección; usar literals para campos no presentes en ProductPackageDao (saleUnitPrice, stock)
         cq.select(cb.construct(
                 ProductForCatalogProjection.class,
-                productRoot.get("id"),                      // productId
-                productPackageRoot.get("id"),               // productPackageId
-                productRoot.get("name"),                    // productName
-                productPackageRoot.get("codedName"),        // packageCodedName
-                productPackageRoot.get("sku"),              // sku
-                productPackageRoot.get("barcode"),          // barcode
-                purchaseDetailDaoRoot.get("saleUnitPrice"), // saleUnitPrice (no disponible aquí)
-                cb.literal(0),                              // stock (no disponible aquí, usar 0)
-                productPackageRoot.get("imageUrl"),         // imageUrl
-                brandRoot.get("name"),                      // brandName
-                categoryRoot.get("name"),                   // categoryName
-                subcategoryRoot.get("name")                 // subCategoryName
+                productRoot.get("id"),
+                productPackageRoot.get("id"),
+                productRoot.get("name"),
+                productPackageRoot.get("codedName"),
+                productPackageRoot.get("sku"),
+                productPackageRoot.get("barcode"),
+                purchaseDetailDaoRoot.get("saleUnitPrice"),
+                cb.literal(0),
+                productPackageRoot.get("imageUrl"),
+                brandRoot.get("name"),
+                categoryRoot.get("name"),
+                subcategoryRoot.get("name")
         )).where(predicates.toArray(new Predicate[0]));
 
         cq.orderBy(cb.asc(productRoot.get("name")));
