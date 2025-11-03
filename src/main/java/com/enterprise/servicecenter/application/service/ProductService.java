@@ -69,6 +69,7 @@ public class ProductService implements ProductUseCase {
               productPackage.setStatus(productPackageRequest.getStatus());
               productPackage.setBarcode(productPackageRequest.getBarcode());
               productPackage.setSku(productPackageRequest.getSku());
+              productPackage.setDescription(productPackageRequest.getDescription());
               return productPackage;
             })
             .toList();
