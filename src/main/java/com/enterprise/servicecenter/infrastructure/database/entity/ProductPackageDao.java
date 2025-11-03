@@ -17,6 +17,7 @@ public class ProductPackageDao {
     @Id
     private String id;
 
+    private String description;
     private String productId;
     private String packageId;
     private String unitId;
@@ -42,6 +43,7 @@ public class ProductPackageDao {
         this.barcode = productPackage.getBarcode();
         this.sku = productPackage.getSku();
         this.created = LocalDateTime.now();
+        this.description = productPackage.getDescription();
     }
 
     public ProductPackage toDomain() {
@@ -56,6 +58,7 @@ public class ProductPackageDao {
         productPackage.setStatus(this.status);
         productPackage.setBarcode(this.barcode);
         productPackage.setSku(this.sku);
+        productPackage.setDescription(this.description);
         return productPackage;
     }
 

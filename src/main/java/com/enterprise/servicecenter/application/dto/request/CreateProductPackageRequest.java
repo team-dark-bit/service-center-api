@@ -18,5 +18,6 @@ public class CreateProductPackageRequest {
     private Boolean status;
     private String barcode;
     private String sku;
+    private String description;
 
 }
