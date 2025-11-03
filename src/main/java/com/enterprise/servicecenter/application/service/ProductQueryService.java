@@ -1,6 +1,7 @@
 package com.enterprise.servicecenter.application.service;
 
 import com.enterprise.servicecenter.application.dto.response.product.ProductCatalogResponse;
+import com.enterprise.servicecenter.application.dto.response.product.ProductInventoryResponse;
 import com.enterprise.servicecenter.application.port.in.ProductQueryUseCase;
 import com.enterprise.servicecenter.application.port.out.ProductRepository;
 import java.util.List;
@@ -16,5 +17,10 @@ public class ProductQueryService implements ProductQueryUseCase {
   @Override
   public List<ProductCatalogResponse> listForCatalog(String input, int pageNumber, int pageSize) {
     return productRepository.searchProductsForCatalog(input, pageNumber, pageSize);
+  }
+
+  @Override
+  public List<ProductInventoryResponse> listForInventory(String input, int pageNumber, int pageSize) {
+    return productRepository.searchProductsForInventory(input, pageNumber, pageSize);
   }
 }

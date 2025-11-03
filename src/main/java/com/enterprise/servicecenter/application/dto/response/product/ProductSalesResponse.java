@@ -11,20 +11,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductCatalogResponse {
+public class ProductSalesResponse {
   private String productId;
   private String productPackageId;
   private String productName;
   private String packageCodedName;
-  private String brandName;
-  private String categoryName;
-  private String sku;
-  private String barcode;
-
   private Double saleUnitPrice;
   private int stock;
   private String imageUrl;
-
-
-  private String subCategoryName;
 }
