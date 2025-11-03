@@ -1,30 +1,21 @@
-package com.enterprise.servicecenter.application.dto.response.product;
+package com.enterprise.servicecenter.infrastructure.database.projection;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class ProductCatalogResponse {
+@Getter
+public class ProductForInventoryProjection {
   private String productId;
   private String productPackageId;
   private String productName;
   private String packageCodedName;
-  private String brandName;
-  private String categoryName;
   private String sku;
   private String barcode;
-
   private Double saleUnitPrice;
   private int stock;
   private String imageUrl;
-
-
+  private String brandName;
+  private String categoryName;
   private String subCategoryName;
 }

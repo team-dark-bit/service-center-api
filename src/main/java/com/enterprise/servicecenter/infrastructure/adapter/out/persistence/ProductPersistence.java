@@ -2,13 +2,16 @@ package com.enterprise.servicecenter.infrastructure.adapter.out.persistence;
 
 import com.enterprise.servicecenter.application.dto.response.ProductResponse;
 import com.enterprise.servicecenter.application.dto.response.product.ProductCatalogResponse;
+import com.enterprise.servicecenter.application.dto.response.product.ProductInventoryResponse;
 import com.enterprise.servicecenter.application.port.out.ProductRepository;
 import com.enterprise.servicecenter.domain.model.Product;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.projection.ProductCatalogProjectionResponseMapper;
+import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.projection.ProductInventoryProjectionResponseMapper;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.projection.ProductProjectionResponseMapper;
 import com.enterprise.servicecenter.infrastructure.config.exception.ApplicationException;
 import com.enterprise.servicecenter.infrastructure.database.entity.ProductDao;
 import com.enterprise.servicecenter.infrastructure.database.projection.ProductForCatalogProjection;
+import com.enterprise.servicecenter.infrastructure.database.projection.ProductForInventoryProjection;
 import com.enterprise.servicecenter.infrastructure.database.projection.ProductPackageProductProjection;
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaProductRepository;
 import java.util.List;
@@ -24,6 +27,7 @@ public class ProductPersistence implements ProductRepository {
   private final JpaProductRepository jpaProductRepository;
   private final ProductProjectionResponseMapper productProjectRespMapper;
   private final ProductCatalogProjectionResponseMapper productCatalogProjectRespMapper;
+  private final ProductInventoryProjectionResponseMapper productInventoryProjectRespMapper;
 
   @Override
   public void save(Product product) {
@@ -56,6 +60,16 @@ public class ProductPersistence implements ProductRepository {
             jpaProductRepository.searchProductsForCatalog(input, pageNumber, pageSize);
     return projections.stream()
             .map(productCatalogProjectRespMapper::toResponse)
+            .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<ProductInventoryResponse> searchProductsForInventory(
+          String input, int pageNumber, int pageSize) {
+    List<ProductForInventoryProjection> projections =
+            jpaProductRepository.searchProductsForInventory(input, pageNumber, pageSize);
+    return projections.stream()
+            .map(productInventoryProjectRespMapper::toResponse)
             .collect(Collectors.toList());
   }
 

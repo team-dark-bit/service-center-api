@@ -3,6 +3,7 @@ package com.enterprise.servicecenter.infrastructure.adapter.in.web;
 import com.enterprise.servicecenter.application.dto.request.CreateProductRequest;
 import com.enterprise.servicecenter.application.dto.response.ProductResponse;
 import com.enterprise.servicecenter.application.dto.response.product.ProductCatalogResponse;
+import com.enterprise.servicecenter.application.dto.response.product.ProductInventoryResponse;
 import com.enterprise.servicecenter.application.port.in.ProductQueryUseCase;
 import com.enterprise.servicecenter.application.port.in.ProductUseCase;
 import com.enterprise.servicecenter.commons.response.ApiResponse;
@@ -63,6 +64,16 @@ public class ProductController {
           @RequestParam (defaultValue = "10") int pageSize
   ) {
     List<ProductCatalogResponse> products = productQueryUseCase.listForCatalog(input, pageNumber, pageSize);
+    return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Products retrieved", products));
+  }
+
+  @GetMapping("/inventory")
+  public ResponseEntity<ApiResponse<List<ProductInventoryResponse>>> listForInventory(
+          @RequestParam (defaultValue = "") String input,
+          @RequestParam (defaultValue = "0") int pageNumber,
+          @RequestParam (defaultValue = "10") int pageSize
+  ) {
+    List<ProductInventoryResponse> products = productQueryUseCase.listForInventory(input, pageNumber, pageSize);
     return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Products retrieved", products));
   }
 
