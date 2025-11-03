@@ -19,5 +19,6 @@ public class ProductPackage {
     private Boolean status;
     private String barcode;
     private String sku;
+    private String description;
 
 }
