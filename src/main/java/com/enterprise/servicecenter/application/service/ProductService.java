@@ -3,13 +3,13 @@ package com.enterprise.servicecenter.application.service;
 import com.enterprise.servicecenter.application.dto.request.CreateProductPackageRequest;
 import com.enterprise.servicecenter.application.dto.request.CreateProductRequest;
 import com.enterprise.servicecenter.application.dto.response.ProductResponse;
-import com.enterprise.servicecenter.domain.model.Product;
-import com.enterprise.servicecenter.domain.model.ProductPackage;
 import com.enterprise.servicecenter.application.port.in.ProductUseCase;
 import com.enterprise.servicecenter.application.port.out.ProductPackageRepository;
 import com.enterprise.servicecenter.application.port.out.ProductRepository;
 import com.enterprise.servicecenter.commons.util.DateUtil;
 import com.enterprise.servicecenter.commons.util.IdGenerator;
+import com.enterprise.servicecenter.domain.model.Product;
+import com.enterprise.servicecenter.domain.model.ProductPackage;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,11 +31,6 @@ public class ProductService implements ProductUseCase {
   @Override
   public ProductResponse findById(String productId) {
     return mapProductResponse(productRepository.findById(productId));
-  }
-
-  @Override
-  public List<ProductResponse> findAll(String input, int pageNumber, int pageSize) {
-    return productRepository.findAll(input, pageNumber, pageSize);
   }
 
   private Product buildProduct(CreateProductRequest createProductRequest, String productId) {

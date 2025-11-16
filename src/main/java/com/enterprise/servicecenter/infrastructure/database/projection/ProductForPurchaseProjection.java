@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class ProductPackageProductProjection {
+public class ProductForPurchaseProjection {
 
     private String productId;
     private String productPackageId;
