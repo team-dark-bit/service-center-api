@@ -2,8 +2,9 @@ package com.enterprise.servicecenter.infrastructure.adapter.in.web;
 
 import com.enterprise.servicecenter.application.dto.request.CreateProductRequest;
 import com.enterprise.servicecenter.application.dto.response.ProductResponse;
-import com.enterprise.servicecenter.application.dto.response.product.ProductCatalogResponse;
+import com.enterprise.servicecenter.application.dto.response.product.catalog.ProductCatalogResponse;
 import com.enterprise.servicecenter.application.dto.response.product.ProductInventoryResponse;
+import com.enterprise.servicecenter.application.dto.response.product.ProductPurchaseResponse;
 import com.enterprise.servicecenter.application.port.in.ProductQueryUseCase;
 import com.enterprise.servicecenter.application.port.in.ProductUseCase;
 import com.enterprise.servicecenter.commons.response.ApiResponse;
@@ -47,16 +48,6 @@ public class ProductController {
     return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Product found", productResponse));
   }
 
-  @GetMapping
-  public ResponseEntity<ApiResponse<List<ProductResponse>>> findAll(
-          @RequestParam (defaultValue = "") String input,
-          @RequestParam (defaultValue = "0") int pageNumber,
-          @RequestParam (defaultValue = "10") int pageSize
-  ) {
-    List<ProductResponse> products = productUseCase.findAll(input, pageNumber, pageSize);
-    return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Products retrieved", products));
-  }
-
   @GetMapping("/catalog")
   public ResponseEntity<ApiResponse<List<ProductCatalogResponse>>> listForCatalog(
           @RequestParam (defaultValue = "") String input,
@@ -74,6 +65,16 @@ public class ProductController {
           @RequestParam (defaultValue = "10") int pageSize
   ) {
     List<ProductInventoryResponse> products = productQueryUseCase.listForInventory(input, pageNumber, pageSize);
+    return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Products retrieved", products));
+  }
+
+  @GetMapping("/purchase")
+  public ResponseEntity<ApiResponse<List<ProductPurchaseResponse>>> listForPurchase(
+          @RequestParam (defaultValue = "") String input,
+          @RequestParam (defaultValue = "0") int pageNumber,
+          @RequestParam (defaultValue = "10") int pageSize
+  ) {
+    List<ProductPurchaseResponse> products = productQueryUseCase.listForPurchase(input, pageNumber, pageSize);
     return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK.value(), "Products retrieved", products));
   }
 
