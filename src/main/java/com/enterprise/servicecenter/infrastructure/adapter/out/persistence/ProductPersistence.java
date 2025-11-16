@@ -1,8 +1,8 @@
 package com.enterprise.servicecenter.infrastructure.adapter.out.persistence;
 
-import com.enterprise.servicecenter.application.dto.response.ProductResponse;
-import com.enterprise.servicecenter.application.dto.response.product.ProductCatalogResponse;
+import com.enterprise.servicecenter.application.dto.response.product.catalog.ProductCatalogResponse;
 import com.enterprise.servicecenter.application.dto.response.product.ProductInventoryResponse;
+import com.enterprise.servicecenter.application.dto.response.product.ProductPurchaseResponse;
 import com.enterprise.servicecenter.application.port.out.ProductRepository;
 import com.enterprise.servicecenter.domain.model.Product;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.projection.ProductCatalogProjectionResponseMapper;
@@ -12,7 +12,7 @@ import com.enterprise.servicecenter.infrastructure.config.exception.ApplicationE
 import com.enterprise.servicecenter.infrastructure.database.entity.ProductDao;
 import com.enterprise.servicecenter.infrastructure.database.projection.ProductForCatalogProjection;
 import com.enterprise.servicecenter.infrastructure.database.projection.ProductForInventoryProjection;
-import com.enterprise.servicecenter.infrastructure.database.projection.ProductPackageProductProjection;
+import com.enterprise.servicecenter.infrastructure.database.projection.ProductForPurchaseProjection;
 import com.enterprise.servicecenter.infrastructure.repository.jpa.JpaProductRepository;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,14 +43,13 @@ public class ProductPersistence implements ProductRepository {
   }
 
   @Override
-  public List<ProductResponse> findAll(String input, int pageNumber, int pageSize) {
-    List<ProductPackageProductProjection> projections =
-            jpaProductRepository.searchProductsWithPackageTextPaged(input, pageNumber, pageSize);
+  public List<ProductPurchaseResponse> searchProductsForPurchase(String input, int pageNumber, int pageSize) {
+    List<ProductForPurchaseProjection> projections =
+            jpaProductRepository.searchProductsForPurchase(input, pageNumber, pageSize);
 
     return projections.stream()
             .map(productProjectRespMapper::toResponse)
             .collect(Collectors.toList());
-
   }
 
   @Override
@@ -58,9 +57,7 @@ public class ProductPersistence implements ProductRepository {
           String input, int pageNumber, int pageSize) {
     List<ProductForCatalogProjection> projections =
             jpaProductRepository.searchProductsForCatalog(input, pageNumber, pageSize);
-    return projections.stream()
-            .map(productCatalogProjectRespMapper::toResponse)
-            .collect(Collectors.toList());
+    return productCatalogProjectRespMapper.toResponses(projections);
   }
 
   @Override

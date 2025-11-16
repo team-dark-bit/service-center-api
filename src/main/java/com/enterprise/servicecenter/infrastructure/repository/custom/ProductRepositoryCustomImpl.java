@@ -8,7 +8,7 @@ import com.enterprise.servicecenter.infrastructure.database.entity.SubcategoryDa
 import com.enterprise.servicecenter.infrastructure.database.entity.BrandDao;
 import com.enterprise.servicecenter.infrastructure.database.projection.ProductForCatalogProjection;
 import com.enterprise.servicecenter.infrastructure.database.projection.ProductForInventoryProjection;
-import com.enterprise.servicecenter.infrastructure.database.projection.ProductPackageProductProjection;
+import com.enterprise.servicecenter.infrastructure.database.projection.ProductForPurchaseProjection;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -18,6 +18,7 @@ import jakarta.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
+
 @Repository
 public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
 
@@ -25,9 +26,9 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
     private EntityManager entityManager;
 
     @Override
-    public List<ProductPackageProductProjection> searchProductsWithPackageTextPaged(String text, int page, int size) {
+    public List<ProductForPurchaseProjection> searchProductsForPurchase(String text, int page, int size) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<ProductPackageProductProjection> cq = cb.createQuery(ProductPackageProductProjection.class);
+        CriteriaQuery<ProductForPurchaseProjection> cq = cb.createQuery(ProductForPurchaseProjection.class);
 
         Root<ProductDao> productRoot = cq.from(ProductDao.class);
         Root<ProductPackageDao> productPackageRoot = cq.from(ProductPackageDao.class);
@@ -44,7 +45,7 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
         }
 
         cq.select(cb.construct(
-                ProductPackageProductProjection.class,
+                ProductForPurchaseProjection.class,
                 productRoot.get("id"),
                 productPackageRoot.get("id"),
                 productRoot.get("name"),
@@ -76,7 +77,6 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
         Root<BrandDao> brandRoot = cq.from(BrandDao.class);
         Root<CategoryDao> categoryRoot = cq.from(CategoryDao.class);
         Root<SubcategoryDao> subcategoryRoot = cq.from(SubcategoryDao.class);
-        Root<PurchaseDetailDao> purchaseDetailDaoRoot = cq.from(PurchaseDetailDao.class);
 
         List<Predicate> predicates = new ArrayList<>();
         // joins
@@ -84,7 +84,6 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
         predicates.add(cb.equal(productRoot.get("brandId"), brandRoot.get("id")));
         predicates.add(cb.equal(productRoot.get("subcategoryId"), subcategoryRoot.get("id")));
         predicates.add(cb.equal(subcategoryRoot.get("categoryId"), categoryRoot.get("id")));
-        predicates.add(cb.equal(productPackageRoot.get("id"), purchaseDetailDaoRoot.get("productPackageId")));
 
         if (text != null && !text.isEmpty()) {
             String pattern = "%" + text.toLowerCase() + "%";
@@ -108,17 +107,17 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
         cq.select(cb.construct(
                 ProductForCatalogProjection.class,
                 productRoot.get("id"),
-                productPackageRoot.get("id"),
                 productRoot.get("name"),
+                categoryRoot.get("name"),
+                subcategoryRoot.get("name"),
+                brandRoot.get("name"),
+
+                productPackageRoot.get("id"),
+                productPackageRoot.get("description"),
                 productPackageRoot.get("codedName"),
                 productPackageRoot.get("sku"),
                 productPackageRoot.get("barcode"),
-                purchaseDetailDaoRoot.get("saleUnitPrice"),
-                cb.literal(0),
-                productPackageRoot.get("imageUrl"),
-                brandRoot.get("name"),
-                categoryRoot.get("name"),
-                subcategoryRoot.get("name")
+                productPackageRoot.get("imageUrl")
         )).where(predicates.toArray(new Predicate[0]));
 
         cq.orderBy(cb.asc(productRoot.get("name")));
