@@ -1,7 +1,7 @@
 package com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.domain;
 
 import com.enterprise.servicecenter.domain.model.Purchase;
-import com.enterprise.servicecenter.infrastructure.database.entity.PurchaseDao;
+import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.entity.PurchaseDao;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
