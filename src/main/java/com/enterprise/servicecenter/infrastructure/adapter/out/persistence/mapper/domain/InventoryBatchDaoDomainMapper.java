@@ -1,7 +1,7 @@
 package com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.domain;
 
 import com.enterprise.servicecenter.domain.model.InventoryBatch;
-import com.enterprise.servicecenter.infrastructure.database.entity.InventoryBatchDao;
+import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.entity.InventoryBatchDao;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

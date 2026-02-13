@@ -3,7 +3,7 @@ package com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapp
 
 import com.enterprise.servicecenter.application.dto.response.product.catalog.PackageCatalogResponse;
 import com.enterprise.servicecenter.application.dto.response.product.catalog.ProductCatalogResponse;
-import com.enterprise.servicecenter.infrastructure.database.projection.ProductForCatalogProjection;
+import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.projection.ProductForCatalogProjection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.domain;
 
 import com.enterprise.servicecenter.domain.model.Subcategory;
-import com.enterprise.servicecenter.infrastructure.database.entity.SubcategoryDao;
+import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.entity.SubcategoryDao;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
