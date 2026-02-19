@@ -1,7 +1,7 @@
 package com.enterprise.servicecenter.application.port.in;
 
 import com.enterprise.servicecenter.application.dto.response.product.catalog.ProductCatalogResponse;
-import com.enterprise.servicecenter.application.dto.response.product.ProductInventoryResponse;
+import com.enterprise.servicecenter.application.dto.response.product.inventory.ProductInventoryResponse;
 import com.enterprise.servicecenter.application.dto.response.product.ProductPurchaseResponse;
 import java.util.List;
 

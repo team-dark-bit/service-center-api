@@ -14,10 +14,10 @@ import lombok.Setter;
 @Builder
 public class InventoryBatch {
   private String id;
+  private String purchaseId;
   private String productPackageId;
   private LocalDateTime created;
   private LocalDateTime activationDate;
   private Integer quantityReceived;
   private Integer quantityAvailable;
-  private Double purchaseUnitPrice;
 }

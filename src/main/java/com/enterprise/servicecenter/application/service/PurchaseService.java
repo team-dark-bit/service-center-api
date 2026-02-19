@@ -42,12 +42,12 @@ public class PurchaseService implements PurchaseUseCase {
 
       List<InventoryBatch> batches = purchaseDetails.stream()
               .map(purchaseDetail -> InventoryBatch.builder()
+                      .purchaseId(purchaseId)
                       .productPackageId(purchaseDetail.getProductPackageId())
                       .created(purchase.getPurchaseDate())
                       .activationDate(null)
                       .quantityReceived(purchaseDetail.getQuantity())
                       .quantityAvailable(purchaseDetail.getQuantity())
-                      .purchaseUnitPrice(purchaseDetail.getPurchaseUnitPrice())
                       .build())
               .toList();
       purchaseInventoryBatchRepository.saveAll(batches);
