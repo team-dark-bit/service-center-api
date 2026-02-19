@@ -1,19 +1,17 @@
 package com.enterprise.servicecenter.infrastructure.adapter.out.persistence;
 
-import com.enterprise.servicecenter.application.dto.response.product.catalog.ProductCatalogResponse;
-import com.enterprise.servicecenter.application.dto.response.product.ProductInventoryResponse;
 import com.enterprise.servicecenter.application.dto.response.product.ProductPurchaseResponse;
+import com.enterprise.servicecenter.application.dto.response.product.catalog.ProductCatalogResponse;
 import com.enterprise.servicecenter.application.port.out.ProductRepository;
 import com.enterprise.servicecenter.domain.model.Product;
+import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.entity.ProductDao;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.projection.ProductCatalogProjectionResponseMapper;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.projection.ProductInventoryProjectionResponseMapper;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.projection.ProductProjectionResponseMapper;
-import com.enterprise.servicecenter.infrastructure.config.exception.ApplicationException;
-import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.entity.ProductDao;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.projection.ProductForCatalogProjection;
-import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.projection.ProductForInventoryProjection;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.projection.ProductForPurchaseProjection;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.repository.JpaProductRepository;
+import com.enterprise.servicecenter.infrastructure.config.exception.ApplicationException;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -49,7 +47,7 @@ public class ProductPersistenceAdapter implements ProductRepository {
 
     return projections.stream()
             .map(productProjectRespMapper::toResponse)
-            .collect(Collectors.toList());
+            .toList();
   }
 
   @Override
@@ -58,16 +56,6 @@ public class ProductPersistenceAdapter implements ProductRepository {
     List<ProductForCatalogProjection> projections =
             jpaProductRepository.searchProductsForCatalog(input, pageNumber, pageSize);
     return productCatalogProjectRespMapper.toResponses(projections);
-  }
-
-  @Override
-  public List<ProductInventoryResponse> searchProductsForInventory(
-          String input, int pageNumber, int pageSize) {
-    List<ProductForInventoryProjection> projections =
-            jpaProductRepository.searchProductsForInventory(input, pageNumber, pageSize);
-    return projections.stream()
-            .map(productInventoryProjectRespMapper::toResponse)
-            .collect(Collectors.toList());
   }
 
 }
