@@ -14,14 +14,9 @@ import lombok.Setter;
 @Builder
 public class ProductInventoryResponse {
   private String productId;
-  private String productPackageId;
   private String productName;
-  private String packageCodedName;
-  private String sku;
-  private String barcode;
-  private String imageUrl;
-  private String brandName;
   private String categoryName;
   private String subCategoryName;
+  private String brandName;
   List<PackageInventoryResponse> packages;
 }

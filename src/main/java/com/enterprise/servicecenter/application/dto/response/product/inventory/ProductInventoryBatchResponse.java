@@ -1,5 +1,6 @@
 package com.enterprise.servicecenter.application.dto.response.product.inventory;
 
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,4 +17,5 @@ public class ProductInventoryBatchResponse {
   private Double purchaseUnitPrice;
   private Double saleUnitPrice;
   private Integer quantityAvailable;
+  private LocalDateTime purchaseDate;
 }
