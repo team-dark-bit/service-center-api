@@ -59,6 +59,7 @@ public class ProductQueryService implements ProductQueryUseCase {
                         .purchaseUnitPrice(proj.getPurchaseUnitPrice())
                         .saleUnitPrice(proj.getSaleUnitPrice())
                         .quantityAvailable(proj.getQuantityAvailable())
+                        .purchaseDate(proj.getPurchaseDate())
                         .build())
                 .collect(Collectors.toList());
 
