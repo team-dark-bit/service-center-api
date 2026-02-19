@@ -3,7 +3,7 @@ package com.enterprise.servicecenter.infrastructure.adapter.in.web;
 import com.enterprise.servicecenter.application.dto.request.CreateProductRequest;
 import com.enterprise.servicecenter.application.dto.response.ProductResponse;
 import com.enterprise.servicecenter.application.dto.response.product.catalog.ProductCatalogResponse;
-import com.enterprise.servicecenter.application.dto.response.product.ProductInventoryResponse;
+import com.enterprise.servicecenter.application.dto.response.product.inventory.ProductInventoryResponse;
 import com.enterprise.servicecenter.application.dto.response.product.ProductPurchaseResponse;
 import com.enterprise.servicecenter.application.port.in.ProductQueryUseCase;
 import com.enterprise.servicecenter.application.port.in.ProductUseCase;

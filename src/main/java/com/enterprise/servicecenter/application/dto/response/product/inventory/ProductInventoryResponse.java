@@ -1,5 +1,6 @@
-package com.enterprise.servicecenter.application.dto.response.product;
+package com.enterprise.servicecenter.application.dto.response.product.inventory;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,10 +19,9 @@ public class ProductInventoryResponse {
   private String packageCodedName;
   private String sku;
   private String barcode;
-  private Double saleUnitPrice;
-  private int stock;
   private String imageUrl;
   private String brandName;
   private String categoryName;
   private String subCategoryName;
+  List<PackageInventoryResponse> packages;
 }

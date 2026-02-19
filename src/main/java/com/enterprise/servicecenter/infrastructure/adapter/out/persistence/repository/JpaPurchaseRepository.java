@@ -1,7 +1,29 @@
 package com.enterprise.servicecenter.infrastructure.adapter.out.persistence.repository;
 
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.entity.PurchaseDao;
+import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.projection.InventoryBatchProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import java.util.List;
 
 public interface JpaPurchaseRepository extends JpaRepository<PurchaseDao, String> {
+
+  @Query(value = """
+          SELECT
+            p.id                     AS purchaseId,
+            p.purchase_number        AS purchaseNumber,
+            pd.purchase_unit_price   AS purchaseUnitPrice,
+            pd.sale_unit_price       AS saleUnitPrice,
+            ib.quantity_available    AS quantityAvailable
+          FROM purchases p
+          JOIN purchase_details pd ON p.id = pd.purchase_id
+          JOIN inventory_batches ib ON p.id = ib.purchase_id
+            AND pd.product_package_id = ib.product_package_id
+          WHERE ib.quantity_available > 0
+            AND pd.product_package_id = :productPackageId
+          """,
+      nativeQuery = true)
+  List<InventoryBatchProjection> findByProductPackageId(@Param("productPackageId") String productPackageId);
+
 }

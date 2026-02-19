@@ -6,16 +6,14 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class ProductForInventoryProjection {
-  private String productId;
-  private String productPackageId;
-  private String productName;
-  private String packageCodedName;
-  private String sku;
-  private String barcode;
-  private Double saleUnitPrice;
-  private int stock;
-  private String imageUrl;
-  private String brandName;
-  private String categoryName;
-  private String subCategoryName;
+  private String productId;//@@
+  private String productPackageId;//
+  private String productName;//
+  private String packageCodedName;//
+  private String sku;//
+  private String barcode;//
+  private String imageUrl;//
+  private String brandName;//
+  private String categoryName;//
+  private String subCategoryName;//
 }
