@@ -6,14 +6,13 @@ import com.enterprise.servicecenter.application.port.out.ProductRepository;
 import com.enterprise.servicecenter.domain.model.Product;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.entity.ProductDao;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.projection.ProductCatalogProjectionResponseMapper;
-import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.projection.ProductInventoryProjectionResponseMapper;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.projection.ProductProjectionResponseMapper;
+import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.projection.InventoryBatchProjection;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.projection.ProductForCatalogProjection;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.projection.ProductForPurchaseProjection;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.repository.JpaProductRepository;
 import com.enterprise.servicecenter.infrastructure.config.exception.ApplicationException;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import static com.enterprise.servicecenter.infrastructure.config.exception.RuntimeErrors.PRODUCT_NOT_FOUND;
@@ -25,7 +24,6 @@ public class ProductPersistenceAdapter implements ProductRepository {
   private final JpaProductRepository jpaProductRepository;
   private final ProductProjectionResponseMapper productProjectRespMapper;
   private final ProductCatalogProjectionResponseMapper productCatalogProjectRespMapper;
-  private final ProductInventoryProjectionResponseMapper productInventoryProjectRespMapper;
 
   @Override
   public void save(Product product) {
@@ -56,6 +54,11 @@ public class ProductPersistenceAdapter implements ProductRepository {
     List<ProductForCatalogProjection> projections =
             jpaProductRepository.searchProductsForCatalog(input, pageNumber, pageSize);
     return productCatalogProjectRespMapper.toResponses(projections);
+  }
+
+  @Override
+  public List<InventoryBatchProjection> listInventoryByProductPackageId(String productPackageId) {
+    return jpaProductRepository.findByProductPackageId(productPackageId);
   }
 
 }

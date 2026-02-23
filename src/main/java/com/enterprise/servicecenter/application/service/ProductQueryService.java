@@ -8,7 +8,6 @@ import com.enterprise.servicecenter.application.dto.response.product.inventory.P
 import com.enterprise.servicecenter.application.dto.response.product.inventory.ProductInventoryResponse;
 import com.enterprise.servicecenter.application.port.in.ProductQueryUseCase;
 import com.enterprise.servicecenter.application.port.out.ProductRepository;
-import com.enterprise.servicecenter.application.port.out.PurchaseRepository;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.projection.InventoryBatchProjection;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +21,6 @@ public class ProductQueryService implements ProductQueryUseCase {
 
   private final ProductRepository productRepository;
   private final ProductInventoryResponseMapper productInventoryResponseMapper;
-  private final PurchaseRepository purchaseRepository;
 
   @Override
   public List<ProductCatalogResponse> listForCatalog(String input, int pageNumber, int pageSize) {
@@ -47,7 +45,7 @@ public class ProductQueryService implements ProductQueryUseCase {
       List<PackageInventoryResponse> packages = product.getPackages();
       packages.forEach(pkg -> {
         String productPackageId = pkg.getProductPackageId();
-        List<InventoryBatchProjection> projections = purchaseRepository.findByProductPackageId(productPackageId);
+        List<InventoryBatchProjection> projections = productRepository.listInventoryByProductPackageId(productPackageId);
         if (projections == null || projections.isEmpty()) {
           pkg.setBatches(Collections.emptyList());
           return;
