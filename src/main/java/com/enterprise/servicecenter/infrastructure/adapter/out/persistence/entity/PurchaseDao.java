@@ -15,7 +15,7 @@ public class PurchaseDao {
     @Id
     private String id;
 
-    private String purchaseNumber;//@@
+    private Integer purchaseNumber;
     private String supplierId;
     private LocalDateTime purchaseDate;
     private String receiptType;
