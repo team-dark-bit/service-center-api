@@ -13,9 +13,11 @@ public class PurchasePersistenceAdapter implements PurchaseRepository {
 
   private final JpaPurchaseRepository jpaPurchaseRepository;
   private final PurchaseDaoDomainMapper purchaseDaoDomainMapper;
+  private final PurchaseNumberGenerator purchaseNumberGenerator;
 
   @Override
   public String save(Purchase purchase) {
+    purchase.setPurchaseNumber(purchaseNumberGenerator.next());
     return jpaPurchaseRepository.save(purchaseDaoDomainMapper.toDao(purchase)).getId();
   }
 }

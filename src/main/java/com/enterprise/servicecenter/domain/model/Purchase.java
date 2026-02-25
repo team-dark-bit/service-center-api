@@ -11,7 +11,7 @@ import lombok.Setter;
 public class Purchase {
 
     private String id;
-    private String purchaseNumber;
+    private Integer purchaseNumber;
     private String supplierId;
     private LocalDateTime purchaseDate;
     private String receiptType;
