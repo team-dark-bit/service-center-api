@@ -6,21 +6,24 @@ import lombok.Getter;
 
 @Getter
 public class InventoryBatchProjection {
-  private String purchaseId;
-  private String purchaseNumber;
-  private Double purchaseUnitPrice;
-  private Double saleUnitPrice;
-  private Integer quantityAvailable;
-  private LocalDateTime purchaseDate;
+  private final String purchaseId;
+  private final String inventoryBatchId;
+  private final String purchaseNumber;
+  private final Double purchaseUnitPrice;
+  private final Double saleUnitPrice;
+  private final Integer quantityAvailable;
+  private final LocalDateTime purchaseDate;
 
   public InventoryBatchProjection(
           String purchaseId,
+          String inventoryBatchId,
           String purchaseNumber,
           Double purchaseUnitPrice,
           Double saleUnitPrice,
           Integer quantityAvailable,
           Timestamp purchaseDateTs) {
     this.purchaseId = purchaseId;
+    this.inventoryBatchId = inventoryBatchId;
     this.purchaseNumber = purchaseNumber;
     this.purchaseUnitPrice = purchaseUnitPrice;
     this.saleUnitPrice = saleUnitPrice;

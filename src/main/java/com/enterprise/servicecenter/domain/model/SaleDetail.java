@@ -16,4 +16,5 @@ public class SaleDetail {
   private Double unitPrice;
   private Double subtotal;
   private Double discount;
+  private String description;
 }

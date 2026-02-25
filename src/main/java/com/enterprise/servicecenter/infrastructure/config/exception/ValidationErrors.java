@@ -10,6 +10,7 @@ public enum ValidationErrors implements ApplicationError {
   DECIMAL_BAD_REQUEST(BAD_REQUEST, "Invalid decimal format"),
   FIELD_REQUIRED(BAD_REQUEST, "The field %s must not be null or empty");
 
+
   private final HttpStatus status;
   private final String message;
 
