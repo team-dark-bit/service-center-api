@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CreatePurchaseRequest {
-    private String purchaseNumber;
     private String supplierId;
     private String purchaseDate;
     private String receiptType;
