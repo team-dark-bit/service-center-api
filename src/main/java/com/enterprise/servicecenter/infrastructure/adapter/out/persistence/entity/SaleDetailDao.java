@@ -21,4 +21,5 @@ public class SaleDetailDao {
   private Double unitPrice;
   private Double subtotal;
   private Double discount;
+  private String description;
 }

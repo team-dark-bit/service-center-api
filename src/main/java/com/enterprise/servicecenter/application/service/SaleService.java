@@ -32,28 +32,29 @@ public class SaleService implements SaleUseCase {
   @Transactional
   public void createSale(CreateSaleRequest createSaleRequest) {
 
-    // Para cada detalle de la venta: validar y consumir inventario por lotes
+    // Para cada detalle de la venta: validar y consumir inventario por lotes siempre en cuando no sea un servicio(no tiene productPackageId)
     createSaleRequest.getDetails().forEach(detail -> {
-      String productPackageId = detail.getProductPackageId();
+      if (detail.getProductPackageId() != null) {
+        String productPackageId = detail.getProductPackageId();
 
-      // recuperar inventarios ordenados (del más antiguo al más nuevo)
-      List<InventoryBatchProjection> inventoriesProjection =
-              productRepository.listInventoryByProductPackageId(productPackageId);
+        // recuperar inventarios ordenados (del más antiguo al más nuevo)
+        List<InventoryBatchProjection> inventoriesProjection =
+                productRepository.listInventoryByProductPackageId(productPackageId);
 
-      if (inventoriesProjection.isEmpty()) {
-        throw new ApplicationException(PRODUCT_WITHOUT_INVENTORY, productPackageId);
+        if (inventoriesProjection.isEmpty()) {
+          throw new ApplicationException(PRODUCT_WITHOUT_INVENTORY, productPackageId);
+        }
+
+        int stock = inventoriesProjection.stream()
+                .map(InventoryBatchProjection::getQuantityAvailable)
+                .reduce(0, Integer::sum);
+        if (stock < detail.getQuantity()) {
+          throw new ApplicationException(PRODUCT_QUANTITY_EXCEEDS_INVENTORY, productPackageId, stock, detail.getQuantity());
+        }
+
+        // actualizar inventario consumiendo lotes
+        updateInventory(inventoriesProjection, detail.getQuantity());
       }
-
-      int stock = inventoriesProjection.stream()
-              .map(InventoryBatchProjection::getQuantityAvailable)
-              .reduce(0, Integer::sum);
-      if (stock < detail.getQuantity()) {
-        throw new ApplicationException(PRODUCT_QUANTITY_EXCEEDS_INVENTORY, productPackageId, stock, detail.getQuantity());
-      }
-
-      // actualizar inventario consumiendo lotes
-      updateInventory(inventoriesProjection, detail.getQuantity());
-
     });
 
     // save sale (queda dentro de la misma transacción)
@@ -95,7 +96,7 @@ public class SaleService implements SaleUseCase {
     }
 
     if (quantityToConsume > 0) {
-      // lanzar excepción si no se completó el consumo
+      // quantityToConsume siempre debería ser 0 al salir del loop, si no es así hubo un error en la lógica
       throw new ApplicationException(UPDATE_INVENTORY_ERROR);
     }
 
