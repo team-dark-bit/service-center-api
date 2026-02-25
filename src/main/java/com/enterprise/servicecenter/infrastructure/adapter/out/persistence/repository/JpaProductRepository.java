@@ -12,6 +12,7 @@ public interface JpaProductRepository extends JpaRepository<ProductDao, String>,
   @Query(value = """
           SELECT
             p.id                     AS purchaseId,
+            ib.id                    AS inventoryBatchId,
             p.purchase_number        AS purchaseNumber,
             pd.purchase_unit_price   AS purchaseUnitPrice,
             pd.sale_unit_price       AS saleUnitPrice,

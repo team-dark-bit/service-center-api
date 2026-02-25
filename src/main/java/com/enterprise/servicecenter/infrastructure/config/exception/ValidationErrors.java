@@ -8,9 +8,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 public enum ValidationErrors implements ApplicationError {
 
   DECIMAL_BAD_REQUEST(BAD_REQUEST, "Invalid decimal format"),
-  FIELD_REQUIRED(BAD_REQUEST, "The field %s must not be null or empty"),
-  PRODUCT_WITHOUT_INVENTORY(BAD_REQUEST, "The product package with id %s does not have inventory"),
-  PRODUCT_QUANTITY_EXCEEDS_INVENTORY(BAD_REQUEST, "The product package with id %s has only %d units available but %d were requested");
+  FIELD_REQUIRED(BAD_REQUEST, "The field %s must not be null or empty");
 
 
   private final HttpStatus status;
