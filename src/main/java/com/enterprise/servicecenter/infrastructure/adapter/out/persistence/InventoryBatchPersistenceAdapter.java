@@ -6,7 +6,9 @@ import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.entit
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.mapper.domain.InventoryBatchDaoDomainMapper;
 import com.enterprise.servicecenter.infrastructure.adapter.out.persistence.repository.JpaInventoryBatchRepository;
 import com.enterprise.servicecenter.infrastructure.config.exception.ApplicationException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import static com.enterprise.servicecenter.infrastructure.config.exception.RuntimeErrors.INVENTORY_BATCH_NOT_FOUND;
@@ -36,6 +38,12 @@ public class InventoryBatchPersistenceAdapter implements InventoryBatchRepositor
     return jpaInventoryBatchRepository.findById(id)
             .map(inventoryBatchDomainMapper::toDomain)
             .orElseThrow(() -> new ApplicationException(INVENTORY_BATCH_NOT_FOUND, id));
+  }
+
+  @Override
+  public Set<String> findExistingProductPackageIds(List<String> productPackageIds) {
+    List<String> existing = jpaInventoryBatchRepository.findExistingProductPackageIds(productPackageIds);
+    return existing == null ? Set.of() : new HashSet<>(existing);
   }
 
 }
