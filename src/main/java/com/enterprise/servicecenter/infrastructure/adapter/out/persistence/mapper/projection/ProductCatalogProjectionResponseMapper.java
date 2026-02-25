@@ -31,7 +31,7 @@ public abstract class ProductCatalogProjectionResponseMapper {
 
     return grouped.values().stream()
             .map(list -> {
-              ProductForCatalogProjection first = list.get(0);
+              ProductForCatalogProjection first = list.getFirst();
               ProductCatalogResponse product = toProduct(first);
               List<PackageCatalogResponse> packages = list.stream()
                       .map(this::toPackage)
