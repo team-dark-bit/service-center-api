@@ -16,5 +16,6 @@ public class ServiceDao {
   private String id;
   private String name;
   private Double referencePrice;
+  private Boolean active;
 
 }
