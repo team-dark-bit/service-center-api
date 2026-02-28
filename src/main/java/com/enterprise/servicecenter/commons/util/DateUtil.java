@@ -5,8 +5,8 @@ import java.time.OffsetDateTime;
 
 public class DateUtil {
 
-    public static LocalDateTime toLocalDateTime(String date) {
-        OffsetDateTime offsetDateTime = OffsetDateTime.parse(date);
-        return offsetDateTime.toLocalDateTime();
-    }
+  public static LocalDateTime toLocalDateTime(String date) {
+    OffsetDateTime offsetDateTime = OffsetDateTime.parse(date);
+    return offsetDateTime.toLocalDateTime();
+  }
 }
