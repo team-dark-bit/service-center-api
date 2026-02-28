@@ -1,5 +1,7 @@
-package com.enterprise.servicecenter.domain.model;
+package com.enterprise.servicecenter.application.dto.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,11 +9,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Service {
-
+@AllArgsConstructor
+@Builder
+public class ServiceResponse {
   private String id;
   private String name;
   private Double referencePrice;
-  private Boolean active;
-
 }
+
