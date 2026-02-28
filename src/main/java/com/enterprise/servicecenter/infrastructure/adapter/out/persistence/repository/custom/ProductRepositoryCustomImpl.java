@@ -49,7 +49,8 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
                 productRoot.get("name"),
                 productPackageRoot.get("codedName"),
                 productPackageRoot.get("sku"),
-                productPackageRoot.get("barcode")
+                productPackageRoot.get("barcode"),
+                productPackageRoot.get("description")
         )).where(predicates.toArray(new Predicate[0]));
 
         // Opcional: Agregar orden
