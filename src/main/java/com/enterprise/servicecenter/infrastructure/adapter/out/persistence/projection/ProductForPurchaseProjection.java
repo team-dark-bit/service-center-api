@@ -13,5 +13,6 @@ public class ProductForPurchaseProjection {
     private String codedName;
     private String sku;
     private String barcode;
+    private String packageDescription;
 
 }
