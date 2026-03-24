@@ -74,6 +74,12 @@
 			<version>1.5.5.Final</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.darkbit</groupId>
+			<artifactId>security-darkbit</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -104,6 +110,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<mainClass>com.enterprise.servicecenter.ServiceCenterApplication</mainClass>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
