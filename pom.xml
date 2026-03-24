@@ -29,6 +29,14 @@
 	<properties>
 		<java.version>21</java.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/team-dark-bit/security-darkbit</url>
+		</repository>
+	</repositories>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
