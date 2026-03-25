@@ -2,10 +2,7 @@
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY . .
-
-RUN mkdir -p /root/.m2 \
- && cp .mvn/settings.xml /root/.m2/settings.xml \
- && mvn -B -DskipTests package
+RUN mvn clean package -DskipTests
 
 # Etapa 2: runtime (slim)
 FROM eclipse-temurin:21-jre-jammy
