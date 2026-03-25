@@ -1,15 +1,16 @@
-# Etapa 1: build
-FROM maven:3.9.6-eclipse-temurin-21 AS build
+FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY . .
 
-RUN mkdir -p /root/.m2 \
- && cp .mvn/settings.xml /root/.m2/settings.xml \
- && mvn -B -DskipTests package
+COPY pom.xml .
+COPY .mvn/ .mvn/
+COPY src/ src/
 
-# Etapa 2: runtime (slim)
-FROM eclipse-temurin:21-jre-jammy
+# settings.xml en el repo, con env vars:
+# username=${env.GITHUB_ACTOR}
+# password=${env.GITHUB_TOKEN}
+RUN mvn -B -s .mvn/settings.xml -DskipTests package
+
+FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
-EXPOSE 8080
-CMD ["java", "-jar", "app.jar"]
+CMD ["java","-jar","app.jar"]
