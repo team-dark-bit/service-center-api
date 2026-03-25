@@ -32,8 +32,8 @@
 
 	<repositories>
 		<repository>
-			<id>github</id>
-			<url>https://maven.pkg.github.com/team-dark-bit/security-darkbit</url>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
 		</repository>
 	</repositories>
 	
@@ -84,9 +84,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.darkbit</groupId>
+			<groupId>com.github.team-dark-bit</groupId>
 			<artifactId>security-darkbit</artifactId>
-			<version>1.0.0</version>
+			<version>v1.0.0</version>
 		</dependency>
 	</dependencies>
 
